@@ -24,7 +24,7 @@ public class Main {
 
         int sum = 0;
 
-        for (int i = 0; i < arr.length - 1; i++) {
+        for (int i = 0; i < arr.length; i++) {
             sum = sum + arr[i];
         }
 
@@ -41,13 +41,13 @@ public class Main {
         int minSum = 200_000;
         int maxSum = 0;
 
-        for (int i = 0; i < arr.length - 1; i++) {
+        for (int i = 0; i < arr.length; i++) {
             if (arr[i] < minSum) {
                 minSum = arr[i];
             }
         }
 
-        for (int i = 0; i < arr.length - 1; i++) {
+        for (int i = 0; i < arr.length; i++) {
             if (arr[i] > maxSum) {
                 maxSum = arr[i];
             }
@@ -64,15 +64,14 @@ public class Main {
 
         int[] arr = generateRandomArray();
 
-        double average = 0;
-        int days = 30;
-        int sum2 = 0;
+        double average;
+        double sum2 = 0;
 
-        for (int i = 0; i < arr.length - 1; i++) {
+        for (int i = 0; i < arr.length; i++) {
             sum2 = sum2 + arr[i];
         }
 
-        average = sum2 / days;
+        average = sum2 / arr.length;
 
         System.out.println("Средняя сумма трат за месяц составила " + average + " рублей");
 
