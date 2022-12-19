@@ -1,64 +1,21 @@
 public class Main {
     public static void main(String[] args) {
 
-
-
-        System.out.println("Hello world!");
-
-
-
-
         // Задание 1
 
+        Author author1 = new Author("Иван Иванов");
+        Author author2 = new Author("Петр Петров");
+
+        Book book1 = new Book("Новый год", 1990);
+        Book book2 = new Book("Старый новый год", 2000);
 
 
 
-        // Задание 2
+        System.out.println("book1.getYear() = " + book1.getYear());
 
+        book1.setYear(1991);
 
-
-
-        // Задание 3
-
-
-
-
-        // Задание 4
-
-
-
-
-        // Задание 5
-
-
-
-
-        // Задание 6
-
-
-
-
-        // Задание 7
-
-
-
-
-        // Задание 8
-
-
-
-
-        // Задание 9
-
-
-
-
-        // Задание 10
-
-
-
-
-
+        System.out.println("book1.getYear() = " + book1.getYear());
 
     }
 }
