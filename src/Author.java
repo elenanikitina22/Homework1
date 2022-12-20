@@ -1,16 +1,18 @@
 public class Author {
-    private String author;
+    private String firstName;
+    private String secondName;
 
-    public Author(String author) {
-        this.author = author;
+    public Author(String firstName, String secondName) {
+        this.firstName = firstName;
+        this.secondName = secondName;
     }
 
-    public String getName() {
-        return this.author;
+    public String getFirstName() {
+        return this.firstName;
     }
 
-    public void setName(String name) {
-        this.author = author;
+    public String getSecondName() {
+        return this.secondName;
     }
 
 }
