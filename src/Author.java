@@ -15,4 +15,8 @@ public class Author {
         return this.secondName;
     }
 
+    public String toString() {
+        return this.firstName + this.secondName;
+    }
+
 }

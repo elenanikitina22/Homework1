@@ -15,5 +15,10 @@ public class Main {
 
         System.out.println("book1.getYear() = " + book1.getYear());
 
+        // Проверка
+
+        System.out.println(book1);
+        System.out.println(book2);
+
     }
 }
