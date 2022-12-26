@@ -1,17 +1,21 @@
 public class Main {
     public static void main(String[] args) {
 
-        // Билет 7
-
-        // Когда применяется цикл while?
-        // Для чего применяется метод toString?
-        // Что такое область видимости?
+        // Здравствуйте, меня зовут Елена Никитина, номер билета 7.
 
         // Задание 1
 
         // Напишите метод, который возводит число в квадрат.
 
-        System.out.println("Hello world!");
+        int value = 10;
+
+        System.out.println(squaredValue(value));
 
     }
+
+    public static int squaredValue(int value) {
+        value = value * value;
+        return value;
+    }
+
 }
