@@ -1,5 +1,7 @@
 import java.util.Objects;
 
+//hw
+
 public class Car {
     String brand;
     String model;
@@ -53,4 +55,7 @@ public class Car {
                 ", Год выпуска " + productionYear +
                 ", Сборка " + productionCountry;
     }
+
+    // hw
+
 }
