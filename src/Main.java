@@ -12,7 +12,7 @@ public class Main {
 
     // Создание записей о 10 сотрудниках
 
-    private static final Employee[] employees = {
+    private static final Employee[] EMPLOYEES = {
             new Employee("Зимин Всеволод Александрович", 1, 25000),
             new Employee("Иванова Полина Сергеевна", 2, 30000),
             new Employee("Калинина Майя Константиновна", 3, 35000),
@@ -22,22 +22,22 @@ public class Main {
             new Employee("Софронов Артём Максимович", 2, 55000),
             new Employee("Спиридонов Григорий Богданович", 3, 60000),
             new Employee("Федотов Алексей Никитич", 4, 70000),
-            new Employee("Щербакова Анна Артёмовна", 5, 75000)
+            new Employee("Щербакова Анна Артёмовна", 5, 75001)
     };
 
     // Список всех сотрудников
 
     public static void printAllEmployees() {
-        for (Employee employee : employees) {
+        for (Employee employee : EMPLOYEES) {
             System.out.println(employee);
         }
     }
 
     //  Сумма зарплат в месяц
 
-    public static int calculateAllSalaries() {
-        int sum = 0;
-        for (Employee employee : employees) {
+    public static double calculateAllSalaries() {
+        double sum = 0;
+        for (Employee employee : EMPLOYEES) {
             sum = sum + employee.getSalary();
         }
         return sum;
@@ -46,10 +46,10 @@ public class Main {
     // Сотрудник с минимальной зарплатой
 
     public static Employee minimumSalary() {
-        Employee result = employees[0];
-        int minimum = employees[0].getSalary();
+        Employee result = null;
+        int minimum = Integer.MAX_VALUE;
 
-        for (Employee employee : employees) {
+        for (Employee employee : EMPLOYEES) {
             if (employee.getSalary() < minimum) {
                 minimum = employee.getSalary();
                 result = employee;
@@ -61,10 +61,10 @@ public class Main {
     // Сотрудник с максимальной зарплатой
 
     public static Employee maximumSalary() {
-        Employee result = employees[0];
-        int maximum = employees[0].getSalary();
+        Employee result = null;
+        int maximum = Integer.MIN_VALUE;
 
-        for (Employee employee : employees) {
+        for (Employee employee : EMPLOYEES) {
             if (employee.getSalary() > maximum) {
                 maximum = employee.getSalary();
                 result = employee;
@@ -75,18 +75,15 @@ public class Main {
 
     // Среднее значение зарплат
 
-    public static int averageSalary() {
-        int average = 0;
-        for (Employee employee : employees) {
-            average = calculateAllSalaries() / employees.length;
-        }
+    public static double averageSalary() {
+        double average = calculateAllSalaries() / EMPLOYEES.length;
         return average;
     }
 
     // Ф. И. О. всех сотрудников
 
     public static void printAllEmployeesNames() {
-        for (Employee employee : employees) {
+        for (Employee employee : EMPLOYEES) {
             System.out.println(employee.getName());
         }
     }

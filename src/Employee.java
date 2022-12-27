@@ -4,13 +4,13 @@ public class Employee {
     private int salary;
     private int id;
 
-    private static int integer = 1;
+    private static int increment = 1;
 
     public Employee(String name, int department, int salary) {
         this.name = name;
         this.department = department;
         this.salary = salary;
-        this.id = integer++;
+        this.id = increment++;
     }
 
     // Сеттеры
