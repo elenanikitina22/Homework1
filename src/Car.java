@@ -1,7 +1,5 @@
 import java.util.Objects;
 
-//hw
-
 public class Car {
     String brand;
     String model;
