@@ -98,19 +98,5 @@ public class Transport {
         }
 
     }
-
-    // Прочие методы
-
-    @Override
-    public String toString() {
-        return "Машина " +
-                "Марка " + brand +
-                ", Модель " + model +
-                ", Год выпуска " + productionYear +
-                ", Сборка " + productionCountry +
-                ", Цвет " + color +
-                ", Максимальная скорость " + maxSpeed;
-
-    }
-
+    
 }

@@ -53,4 +53,24 @@ public class Car extends Transport {
 
     }
 
+
+    // Прочие методы
+
+    @Override
+    public String toString() {
+        return "Машина " +
+                "Марка " + getBrand() +
+                ", Модель " + getModel() +
+                ", Год выпуска " + getProductionYear() +
+                ", Сборка " + getProductionCountry() +
+                ", Цвет " + getColor() +
+                ", Максимальная скорость " + getMaxSpeed() +
+                ", Объем двигателя " + engineVolume +
+                ", Коробка передач " + transmission +
+                ", Тип кузова " + bodyType +
+                ", Регистрационный номер " + registrationNumber +
+                ", Количество мест " + numberOfSeats +
+                ", Резина летняя " + isSummerTires;
+    }
+
 }
