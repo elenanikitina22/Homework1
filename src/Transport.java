@@ -1,4 +1,4 @@
-public class Transport {
+public abstract class Transport {
     private final String brand;
     private final String model;
     private final int productionYear;
@@ -37,17 +37,9 @@ public class Transport {
             this.productionCountry = productionCountry;
         }
 
-        if (color == null || color.isEmpty() || color.isBlank()) {
-            this.color = "неизвестен";
-        } else {
-            this.color = color;
-        }
+        this.setColor(color);
 
-        if (maxSpeed <= 0) {
-            this.maxSpeed = 4;
-        } else {
-            this.maxSpeed = maxSpeed;
-        }
+        this.setMaxSpeed(maxSpeed);
 
     }
 
