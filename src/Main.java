@@ -36,8 +36,19 @@ public class Main {
 
         for (int i = 0; i < cars.length; i++)
         {
-            System.out.println("Водитель " + cars[i].getDriver().getName() + " управляет автомобилем " + cars[i].getBrand() + " и будет участвовать в заезде.");
+            System.out.println("Водитель " + cars[i].getDriver().getName() + " управляет легковым автомобилем " + cars[i].getBrand() + " и будет участвовать в заезде.");
         }
+
+        for (int i = 0; i < trucks.length; i++)
+        {
+            System.out.println("Водитель " + trucks[i].getDriver().getName() + " управляет грузовым автомобилем " + trucks[i].getBrand() + " и будет участвовать в заезде.");
+        }
+
+        for (int i = 0; i < buses.length; i++)
+        {
+            System.out.println("Водитель " + buses[i].getDriver().getName() + " управляет автобусом " + buses[i].getBrand() + " и будет участвовать в заезде.");
+        }
+
     }
 
 }
