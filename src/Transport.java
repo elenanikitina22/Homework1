@@ -1,9 +1,11 @@
-public abstract class Transport {
+public abstract class Transport<T extends Driver> {
     private final String brand;
     private final String model;
     private double engineVolume;
 
-    public Transport(String brand, String model, double engineVolume) {
+    private T driver;
+
+    public Transport(String brand, String model, double engineVolume, T driver) {
 
         if (brand == null || brand.isEmpty() || brand.isBlank()) {
             this.brand = "неизвестен";
@@ -18,6 +20,8 @@ public abstract class Transport {
         }
 
         this.setEngineVolume(engineVolume);
+
+        this.driver = driver;
 
     }
 
@@ -35,6 +39,8 @@ public abstract class Transport {
         return engineVolume;
     }
 
+    public T getDriver() { return driver; }
+
     // Сеттеры
 
     public void setEngineVolume(double engineVolume) {
@@ -49,8 +55,8 @@ public abstract class Transport {
 
     // Прочие методы
 
-    public abstract void startMoving();
+    public abstract String startMoving();
 
-    public abstract void stopMoving();
+    public abstract String stopMoving();
     
 }

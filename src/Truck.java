@@ -1,7 +1,7 @@
-public class Truck extends Transport implements Competing {
+public class Truck<T extends DriverTypeC> extends Transport implements Competing {
 
-    public Truck(String brand, String model, double engineVolume) {
-        super(brand, model, engineVolume);
+    public Truck(String brand, String model, double engineVolume, T driver) {
+        super(brand, model, engineVolume, driver);
     }
 
     // Прочие методы
@@ -17,13 +17,13 @@ public class Truck extends Transport implements Competing {
     // Методы из класса
 
     @Override
-    public void startMoving() {
-
+    public String startMoving() {
+        return "Начало движения";
     }
 
     @Override
-    public void stopMoving() {
-
+    public String stopMoving() {
+        return "Остановиться";
     }
 
     // Методы из интерфейса

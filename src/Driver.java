@@ -53,11 +53,11 @@ public abstract class Driver {
 
     // Прочие методы
 
-    public abstract void startMoving();
+    public abstract String startMoving();
 
-    public abstract void stopMoving();
+    public abstract String stopMoving();
 
-    public abstract void refuelCar();
+    public abstract String refuelCar();
 
     @Override
     public String toString() {

@@ -7,18 +7,18 @@ public class DriverTypeC extends Driver {
     // Методы из класса
 
     @Override
-    public void startMoving() {
-
+    public String startMoving() {
+        return "Начало движения";
     }
 
     @Override
-    public void stopMoving() {
-
+    public String stopMoving() {
+        return "Остановиться";
     }
 
     @Override
-    public void refuelCar() {
-
+    public String refuelCar() {
+        return "Заправить авто";
     }
 
 }
