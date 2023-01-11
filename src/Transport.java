@@ -49,12 +49,8 @@ public abstract class Transport {
 
     // Прочие методы
 
-    public void startMoving() {
+    public abstract void startMoving();
 
-    }
-
-    public void stopMoving() {
-
-    }
-
+    public abstract void stopMoving();
+    
 }

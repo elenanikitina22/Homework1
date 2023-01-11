@@ -4,4 +4,21 @@ public class DriverTypeD extends Driver {
         super(name, driversLicenseType, experience);
     }
 
+    // Методы из класса
+
+    @Override
+    public void startMoving() {
+
+    }
+
+    @Override
+    public void stopMoving() {
+
+    }
+
+    @Override
+    public void refuelCar() {
+
+    }
+
 }

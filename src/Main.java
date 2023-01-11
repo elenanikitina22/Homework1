@@ -30,21 +30,20 @@ public class Main {
             new Bus("Kia", "Sportage", 2.4)
     };
 
-    // Создание записей о 4 водителях
-
-    public static Driver[] drivers = {
-            new Driver("Денисов Тимофей Львович", "B", 2),
-            new Driver("Иванов Мирон Фёдорович ", "C", 4),
-            new Driver("Морозова Валерия Германовна", "D", 6),
-            new Driver("Золотарев Михаил Дмитриевич", "B", 8)
-    };
-
-    // Список всех легковых автомобилей
+    // Участие 4 водителей
 
     public static void task1() {
 
-        System.out.println("Водитель" + " " + "управляет автомобилем Б и будет участвовать в заезде");
+        //DriverTypeB driverB1 = new DriverTypeB("Денисов Тимофей Львович", "B", 2);
+        //DriverTypeC driverC1 = new DriverTypeC("Иванов Мирон Фёдорович ", "C", 4);
+        //DriverTypeD driverD1 = new DriverTypeD("Морозова Валерия Германовна", "D", 6);
+       // DriverTypeB driverB2 = new DriverTypeB("Золотарев Михаил Дмитриевич", "B", 8);
+
+      //  System.out.println("Водитель" + driverB1.getName() + "управляет автомобилем Б и будет участвовать в заезде");
 
     }
+
+    // Список всех легковых автомобилей
+
 
 }

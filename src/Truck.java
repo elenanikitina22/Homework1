@@ -14,6 +14,18 @@ public class Truck extends Transport implements Competing {
                 ", Объем двигателя " + getEngineVolume();
     }
 
+    // Методы из класса
+
+    @Override
+    public void startMoving() {
+
+    }
+
+    @Override
+    public void stopMoving() {
+
+    }
+
     // Методы из интерфейса
 
     @Override

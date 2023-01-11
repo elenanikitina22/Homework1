@@ -1,4 +1,4 @@
-public class Driver {
+public abstract class Driver {
     private String name;
     private String driversLicenseType;
     private int experience;
@@ -53,17 +53,11 @@ public class Driver {
 
     // Прочие методы
 
-    public void startMoving() {
+    public abstract void startMoving();
 
-    }
+    public abstract void stopMoving();
 
-    public void stopMoving() {
-
-    }
-
-    public void refuelCar() {
-
-    }
+    public abstract void refuelCar();
 
     @Override
     public String toString() {
