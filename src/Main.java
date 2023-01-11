@@ -3,31 +3,31 @@ public class Main {
         task1();
     }
 
-    // Создание записей о 4 легковых автомобилях - категория B
+    // Создание записей о 4 легковых автомобилях
 
     public static Car[] cars = {
-            new Car("Lada", "Granta", 1.7, new DriverTypeB("Горелов Дмитрий Арсентьевич", "C", 10)),
+            new Car("Lada", "Granta", 1.7, new DriverTypeB("Горелов Дмитрий Арсентьевич", "B", 10)),
             new Car("Audi ", "A8 50 L TDI quattro", 3.0, new DriverTypeB("Калугина Маргарита Андреевна", "B", 5)),
-            new Car("BMW", "Z8", 3.0, new DriverTypeB("Кузьмин Роман Георгиевич", "C", 7)),
-            new Car("Kia", "Sportage", 2.4, new DriverTypeB("Смирнова Екатерина Ивановна", "D", 12))
+            new Car("BMW", "Z8", 3.0, new DriverTypeB("Кузьмин Роман Георгиевич", "B", 7)),
+            new Car("Kia", "Sportage", 2.4, new DriverTypeB("Смирнова Екатерина Ивановна", "B", 12))
     };
 
-    // Создание записей о 4 грузовых автомобилях - категория C
+    // Создание записей о 4 грузовых автомобилях
 
     public static Truck[] trucks = {
-            new Truck("Lada", "Granta", 1.7, new DriverTypeC("Кузнецов Фёдор Фёдорович", "B", 7)),
+            new Truck("Lada", "Granta", 1.7, new DriverTypeC("Кузнецов Фёдор Фёдорович", "C", 7)),
             new Truck("Audi ", "A8 50 L TDI quattro", 3.0, new DriverTypeC("Косарева Ангелина Савельевна", "C", 4)),
-            new Truck("BMW", "Z8", 3.0, new DriverTypeC("Егорова Дарья Леонидовна", "D", 11)),
-            new Truck("Kia", "Sportage", 2.4, new DriverTypeC("Зверева София Алиевна", "B", 9))
+            new Truck("BMW", "Z8", 3.0, new DriverTypeC("Егорова Дарья Леонидовна", "C", 11)),
+            new Truck("Kia", "Sportage", 2.4, new DriverTypeC("Зверева София Алиевна", "C", 9))
     };
 
-    // Создание записей о 4 автобусах - категория D
+    // Создание записей о 4 автобусах
 
     public static Bus[] buses = {
             new Bus("Lada", "Granta", 1.7, new DriverTypeD("Павлов Константин Иванович", "D", 1)),
-            new Bus("Audi ", "A8 50 L TDI quattro", 3.0, new DriverTypeD("Трофимова София Данииловна", "C", 6)),
-            new Bus("BMW", "Z8", 3.0, new DriverTypeD("Федорова Анна Андреевна", "B", 9)),
-            new Bus("Kia", "Sportage", 2.4, new DriverTypeD("Дмитриев Николай Григорьевич", "C", 14))
+            new Bus("Audi ", "A8 50 L TDI quattro", 3.0, new DriverTypeD("Трофимова София Данииловна", "D", 6)),
+            new Bus("BMW", "Z8", 3.0, new DriverTypeD("Федорова Анна Андреевна", "D", 9)),
+            new Bus("Kia", "Sportage", 2.4, new DriverTypeD("Дмитриев Николай Григорьевич", "D", 14))
     };
 
     // Участие 4 водителей
@@ -37,16 +37,19 @@ public class Main {
         for (int i = 0; i < cars.length; i++)
         {
             System.out.println("Водитель " + cars[i].getDriver().getName() + " управляет легковым автомобилем " + cars[i].getBrand() + " и будет участвовать в заезде.");
+
         }
 
         for (int i = 0; i < trucks.length; i++)
         {
             System.out.println("Водитель " + trucks[i].getDriver().getName() + " управляет грузовым автомобилем " + trucks[i].getBrand() + " и будет участвовать в заезде.");
+
         }
 
         for (int i = 0; i < buses.length; i++)
         {
             System.out.println("Водитель " + buses[i].getDriver().getName() + " управляет автобусом " + buses[i].getBrand() + " и будет участвовать в заезде.");
+
         }
 
     }
