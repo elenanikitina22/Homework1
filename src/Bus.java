@@ -1,7 +1,7 @@
-public class Bus extends Transport {
+public class Bus extends Transport implements Competing {
 
-    public Bus(String brand, String model, int productionYear, String productionCountry, String color, int maxSpeed) {
-        super(brand, model, productionYear, productionCountry, color, maxSpeed);
+    public Bus(String brand, String model, double engineVolume) {
+        super(brand, model, engineVolume);
     }
 
     // Прочие методы
@@ -11,10 +11,30 @@ public class Bus extends Transport {
         return "Автобус " +
                 "Марка " + getBrand() +
                 ", Модель " + getModel() +
-                ", Год выпуска " + getProductionYear() +
-                ", Сборка " + getProductionCountry() +
-                ", Цвет " + getColor() +
-                ", Максимальная скорость " + getMaxSpeed();
+                ", Объем двигателя " + getEngineVolume();
+    }
+
+    // Методы из интерфейса
+
+    @Override
+    public void pitStop() {
+        for (Bus bus : Main.buses) {
+            System.out.println(bus);
+        }
+    }
+
+    @Override
+    public void bestLapTime() {
+        for (Bus bus : Main.buses) {
+            System.out.println(bus);
+        }
+    }
+
+    @Override
+    public void maxSpeed() {
+        for (Bus bus : Main.buses) {
+            System.out.println(bus);
+        }
     }
 
 }

@@ -1,6 +1,6 @@
-public class Car extends Transport implements Competing {
+public class Truck extends Transport implements Competing {
 
-    public Car(String brand, String model, double engineVolume) {
+    public Truck(String brand, String model, double engineVolume) {
         super(brand, model, engineVolume);
     }
 
@@ -8,7 +8,7 @@ public class Car extends Transport implements Competing {
 
     @Override
     public String toString() {
-        return "Легковой автомобиль " +
+        return "Грузовой автомобиль " +
                 "Марка " + getBrand() +
                 ", Модель " + getModel() +
                 ", Объем двигателя " + getEngineVolume();
@@ -18,22 +18,22 @@ public class Car extends Transport implements Competing {
 
     @Override
     public void pitStop() {
-        for (Car car : Main.cars) {
-            System.out.println(car);
+        for (Truck truck : Main.trucks) {
+            System.out.println(truck);
         }
     }
 
     @Override
     public void bestLapTime() {
-        for (Car car : Main.cars) {
-            System.out.println(car);
+        for (Truck truck : Main.trucks) {
+            System.out.println(truck);
         }
     }
 
     @Override
     public void maxSpeed() {
-        for (Car car : Main.cars) {
-            System.out.println(car);
+        for (Truck truck : Main.trucks) {
+            System.out.println(truck);
         }
     }
 
