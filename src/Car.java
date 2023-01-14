@@ -1,7 +1,37 @@
 public class Car<T extends DriverTypeB> extends Transport implements Competing {
 
-    public Car(String brand, String model, double engineVolume, T driver) {
+    public enum BodyType {
+        SEDAN ("Седан"),
+        HATCHBACK ("Хетчбек"),
+        COUPE ("Купе"),
+        UNIVERSAL ("Универсал"),
+        SUV("Внедорожник"),
+        CROSSOVER("Кроссовер"),
+        PICKUP("Пикап"),
+        VAN("Фургон"),
+        MINIVAN("Минивэн");
+
+        private String title;
+
+        BodyType(String title) {
+            this.title = title;
+        }
+
+        public String getTitle() {
+            return title;
+        }
+
+    }
+
+    private BodyType bodyType;
+
+    public Car(String brand, String model, double engineVolume, BodyType bodyType, T driver) {
         super(brand, model, engineVolume, driver);
+        this.bodyType = bodyType;
+    }
+
+    public BodyType getBodyType() {
+        return bodyType;
     }
 
     // Прочие методы
@@ -11,7 +41,8 @@ public class Car<T extends DriverTypeB> extends Transport implements Competing {
         return "Легковой автомобиль " +
                 "Марка " + getBrand() +
                 ", Модель " + getModel() +
-                ", Объем двигателя " + getEngineVolume();
+                ", Объем двигателя " + getEngineVolume() +
+                ", Тип кузова " + getBodyType();
     }
 
     // Методы из класса

@@ -1,7 +1,29 @@
 public class Bus<T extends DriverTypeD> extends Transport implements Competing {
 
-    public Bus(String brand, String model, double engineVolume, T driver) {
+    public enum Capacity {
+        EXTRA_SMALL,
+        SMALL,
+        MEDIUM,
+        LARGE,
+        ESPECIALLY_LARGE;
+
+        private int title;
+
+        Capacity(int title) {
+            this.title = title;
+        }
+
+        public int getTitle() {
+            return title;
+        }
+
+    }
+
+    private Capacity capacity;
+
+    public Bus(String brand, String model, double engineVolume, Capacity capacity, T driver) {
         super(brand, model, engineVolume, driver);
+        this.capacity = capacity;
     }
 
     // Прочие методы
