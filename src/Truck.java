@@ -1,26 +1,34 @@
 public class Truck<T extends DriverTypeC> extends Transport implements Competing {
 
     public enum LoadCapacity {
-        N1 (3.5), // до 3,5 тонн
-        N2 (12), // от 3,5 до 12 тонн
-        N3 (15); // свыше 12 тонн
+        N1 (0 ,3.5f), // до 3,5 тонн
+        N2 (3.5f, 12f), // от 3,5 до 12 тонн
+        N3 (12f, 15f); // свыше 12 тонн
 
-        private double title;
+        private float min;
+        private float max;
 
-        LoadCapacity(double title) {
-            this.title = title;
+        LoadCapacity(float min, float max) {
+            this.min = min;
+            this.max = max;
         }
 
-        public double getTitle() {
-            return title;
+        public float getMax() {
+            return max;
         }
 
+        @Override
+        public String toString()
+        {
+            return "Грузоподъемность: от " + min + " тонн до " + max + " тонн";
+        }
     }
 
     private LoadCapacity loadCapacity;
 
-    public Truck(String brand, String model, double engineVolume, double loadCapacity, DriverTypeC driver) {
+    public Truck(String brand, String model, double engineVolume, LoadCapacity loadCapacity, DriverTypeC driver) {
         super(brand, model, engineVolume, driver);
+        this.loadCapacity = loadCapacity;
     }
 
     // Прочие методы
@@ -43,6 +51,19 @@ public class Truck<T extends DriverTypeC> extends Transport implements Competing
     @Override
     public String stopMoving() {
         return "Остановиться";
+    }
+
+    @Override
+    public String printType()
+    {
+        if (loadCapacity.getMax() > 0f)
+        {
+            return loadCapacity.toString();
+        }
+        else
+        {
+            return "Данных по транспортному средству недостаточно";
+        }
     }
 
     // Методы из интерфейса

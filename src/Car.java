@@ -13,14 +13,17 @@ public class Car<T extends DriverTypeB> extends Transport implements Competing {
 
         private String title;
 
-        BodyType(String title) {
-            this.title = title;
-        }
+        BodyType(String title) { this.title = title; }
 
         public String getTitle() {
             return title;
         }
 
+        @Override
+        public String toString()
+        {
+            return "Тип кузова: " + getTitle();
+        }
     }
 
     private BodyType bodyType;
@@ -55,6 +58,19 @@ public class Car<T extends DriverTypeB> extends Transport implements Competing {
     @Override
     public String stopMoving() {
         return "Остановиться";
+    }
+
+    @Override
+    public String printType()
+    {
+        if (bodyType != null)
+        {
+            return bodyType.toString();
+        }
+        else
+        {
+            return "Данных по транспортному средству недостаточно";
+        }
     }
 
     // Методы из интерфейса

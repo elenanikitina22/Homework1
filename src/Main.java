@@ -15,10 +15,10 @@ public class Main {
     // Создание записей о 4 грузовых автомобилях
 
     public static Truck[] trucks = {
-            new Truck("Lada", "Granta", 1.7, 3.5, new DriverTypeC("Кузнецов Фёдор Фёдорович", "C", 7)),
-            new Truck("Audi ", "A8 50 L TDI quattro", 3.0, 3.6, new DriverTypeC("Косарева Ангелина Савельевна", "C", 4)),
-            new Truck("BMW", "Z8", 3.0, 3.7, new DriverTypeC("Егорова Дарья Леонидовна", "C", 11)),
-            new Truck("Kia", "Sportage", 2.4, 3.8, new DriverTypeC("Зверева София Алиевна", "C", 9))
+            new Truck("Lada", "Granta", 1.7, Truck.LoadCapacity.N1, new DriverTypeC("Кузнецов Фёдор Фёдорович", "C", 7)),
+            new Truck("Audi ", "A8 50 L TDI quattro", 3.0, Truck.LoadCapacity.N1, new DriverTypeC("Косарева Ангелина Савельевна", "C", 4)),
+            new Truck("BMW", "Z8", 3.0, Truck.LoadCapacity.N2, new DriverTypeC("Егорова Дарья Леонидовна", "C", 11)),
+            new Truck("Kia", "Sportage", 2.4, Truck.LoadCapacity.N3, new DriverTypeC("Зверева София Алиевна", "C", 9))
     };
 
     // Создание записей о 4 автобусах

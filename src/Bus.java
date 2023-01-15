@@ -1,22 +1,25 @@
 public class Bus<T extends DriverTypeD> extends Transport implements Competing {
 
     public enum Capacity {
-        EXTRA_SMALL,
-        SMALL,
-        MEDIUM,
-        LARGE,
-        ESPECIALLY_LARGE;
+        EXTRA_SMALL (0, 10),
+        SMALL (10, 25),
+        MEDIUM (40, 50),
+        LARGE (60, 80),
+        ESPECIALLY_LARGE (100, 120);
 
-        private int title;
+        private int min;
+        private int max;
 
-        Capacity(int title) {
-            this.title = title;
+        Capacity(int min, int max) {
+            this.min = min;
+            this.max = max;
         }
 
-        public int getTitle() {
-            return title;
+        @Override
+        public String toString()
+        {
+            return "Вместимость: " + min + " - " + max;
         }
-
     }
 
     private Capacity capacity;
@@ -46,6 +49,19 @@ public class Bus<T extends DriverTypeD> extends Transport implements Competing {
     @Override
     public String stopMoving() {
         return "Остановиться";
+    }
+
+    @Override
+    public String printType()
+    {
+        if (capacity != null)
+        {
+            return capacity.toString();
+        }
+        else
+        {
+            return "Данных по транспортному средству недостаточно";
+        }
     }
 
     // Методы из интерфейса

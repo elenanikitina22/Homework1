@@ -58,5 +58,6 @@ public abstract class Transport<T extends Driver> {
     public abstract String startMoving();
 
     public abstract String stopMoving();
-    
+
+    public abstract String printType();
 }
