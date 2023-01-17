@@ -1,6 +1,9 @@
 public class Main {
     public static void main(String[] args) {
         task1();
+
+        Car car = new Car("Lada", "Granta", 1.7, Car.BodyType.SEDAN, new DriverTypeB("Горелов Дмитрий Арсентьевич", "B", 10));
+        System.out.println(car.passDiagnostics());
     }
 
     // Создание записей о 4 легковых автомобилях

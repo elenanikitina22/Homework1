@@ -55,9 +55,11 @@ public abstract class Transport<T extends Driver> {
 
     // Прочие методы
 
+    public abstract String passDiagnostics();
+
     public abstract String startMoving();
 
     public abstract String stopMoving();
 
-    public abstract String printType();
+    public abstract void printType();
 }

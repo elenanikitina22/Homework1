@@ -39,7 +39,7 @@ public abstract class Driver {
         if (driversLicenseType == null || driversLicenseType.isEmpty() || driversLicenseType.isBlank()) {
             this.driversLicenseType = "неизвестен";
         } else {
-            this.driversLicenseType = name;
+            this.driversLicenseType = driversLicenseType;
         }
     }
 

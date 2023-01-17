@@ -42,6 +42,11 @@ public class Bus<T extends DriverTypeD> extends Transport implements Competing {
     // Методы из класса
 
     @Override
+    public String passDiagnostics() {
+        return "Автобусы диагностику проходить не могут";
+    }
+
+    @Override
     public String startMoving() {
         return "Начало движения";
     }
@@ -52,15 +57,15 @@ public class Bus<T extends DriverTypeD> extends Transport implements Competing {
     }
 
     @Override
-    public String printType()
+    public void printType()
     {
         if (capacity != null)
         {
-            return capacity.toString();
+            System.out.println(capacity.toString());
         }
         else
         {
-            return "Данных по транспортному средству недостаточно";
+            System.out.println("Данных по транспортному средству недостаточно");
         }
     }
 

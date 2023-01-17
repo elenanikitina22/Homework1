@@ -1,7 +1,7 @@
 public class Truck<T extends DriverTypeC> extends Transport implements Competing {
 
     public enum LoadCapacity {
-        N1 (0 ,3.5f), // до 3,5 тонн
+        N1 (0, 3.5f), // до 3,5 тонн
         N2 (3.5f, 12f), // от 3,5 до 12 тонн
         N3 (12f, 15f); // свыше 12 тонн
 
@@ -54,19 +54,32 @@ public class Truck<T extends DriverTypeC> extends Transport implements Competing
     }
 
     @Override
-    public String printType()
+    public void printType()
     {
         if (loadCapacity.getMax() > 0f)
         {
-            return loadCapacity.toString();
+            System.out.println(loadCapacity.toString());
         }
         else
         {
-            return "Данных по транспортному средству недостаточно";
+            System.out.println("Данных по транспортному средству недостаточно");
         }
     }
 
     // Методы из интерфейса
+
+    @Override
+    public String passDiagnostics(){
+        try {
+            if (getDriver().getDriversLicenseType() == "неизвестен")
+                throw new Exception("Необходимо указать тип прав!");
+            else return "Пройдена диагностика";
+        }
+        catch (Exception ex)
+        {
+            return ex.getMessage();
+        }
+    }
 
     @Override
     public void pitStop() {

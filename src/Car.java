@@ -1,10 +1,10 @@
 public class Car<T extends DriverTypeB> extends Transport implements Competing {
 
     public enum BodyType {
-        SEDAN ("Седан"),
-        HATCHBACK ("Хетчбек"),
-        COUPE ("Купе"),
-        UNIVERSAL ("Универсал"),
+        SEDAN("Седан"),
+        HATCHBACK("Хетчбек"),
+        COUPE("Купе"),
+        UNIVERSAL("Универсал"),
         SUV("Внедорожник"),
         CROSSOVER("Кроссовер"),
         PICKUP("Пикап"),
@@ -13,15 +13,16 @@ public class Car<T extends DriverTypeB> extends Transport implements Competing {
 
         private String title;
 
-        BodyType(String title) { this.title = title; }
+        BodyType(String title) {
+            this.title = title;
+        }
 
         public String getTitle() {
             return title;
         }
 
         @Override
-        public String toString()
-        {
+        public String toString() {
             return "Тип кузова: " + getTitle();
         }
     }
@@ -49,6 +50,22 @@ public class Car<T extends DriverTypeB> extends Transport implements Competing {
     }
 
     // Методы из класса
+    @Override
+    public String passDiagnostics(){
+        try
+        {
+            if (getDriver().getDriversLicenseType() == "неизвестен")
+            {
+                throw new Exception("Необходимо указать тип прав!");
+            }
+            else
+                return "Пройдена диагностика";
+        }
+        catch (Exception ex)
+        {
+            return ex.getMessage();
+        }
+    }
 
     @Override
     public String startMoving() {
@@ -61,15 +78,11 @@ public class Car<T extends DriverTypeB> extends Transport implements Competing {
     }
 
     @Override
-    public String printType()
-    {
-        if (bodyType != null)
-        {
-            return bodyType.toString();
-        }
-        else
-        {
-            return "Данных по транспортному средству недостаточно";
+    public void printType() {
+        if (bodyType != null) {
+            System.out.println(bodyType.toString());
+        } else {
+            System.out.println("Данных по транспортному средству недостаточно");
         }
     }
 
