@@ -1,14 +1,14 @@
 public class Truck<T extends DriverTypeC> extends Transport implements Competing {
 
     public enum LoadCapacity {
-        N1 (0, 3.5f), // до 3,5 тонн
+        N1 (null, 3.5f), // до 3,5 тонн
         N2 (3.5f, 12f), // от 3,5 до 12 тонн
-        N3 (12f, 15f); // свыше 12 тонн
+        N3 (12f, null); // свыше 12 тонн
 
-        private float min;
-        private float max;
+        private Float min;
+        private Float max;
 
-        LoadCapacity(float min, float max) {
+        LoadCapacity(Float min, Float max) {
             this.min = min;
             this.max = max;
         }
@@ -20,7 +20,12 @@ public class Truck<T extends DriverTypeC> extends Transport implements Competing
         @Override
         public String toString()
         {
-            return "Грузоподъемность: от " + min + " тонн до " + max + " тонн";
+            if (min == null)
+                return "Грузоподъемность: до " + max;
+            else if (max == null)
+                return "Грузоподъемность: от " + min;
+            else
+                return "Грузоподъемность: от " + min + " тонн до " + max + " тонн";
         }
     }
 

@@ -1,9 +1,28 @@
+import java.util.ArrayList;
+import java.util.List;
+
 public class Main {
     public static void main(String[] args) {
         task1();
 
         Car car = new Car("Lada", "Granta", 1.7, Car.BodyType.SEDAN, new DriverTypeB("Горелов Дмитрий Арсентьевич", "B", 10));
         System.out.println(car.passDiagnostics());
+
+        ArrayList<Transport> transports = new ArrayList<Transport>();
+        ArrayList<Driver> drivers = new ArrayList<Driver>();
+        ArrayList<Mechanic> mechanics = new ArrayList<Mechanic>();
+
+        transports.add(new Car("Lada", "Granta", 1.7, Car.BodyType.SEDAN, new DriverTypeB("Горелов Дмитрий Арсентьевич", "B", 10)));
+        transports.add(new Truck("Audi ", "A8 50 L TDI quattro", 3.0, Truck.LoadCapacity.N1, new DriverTypeC("Косарева Ангелина Савельевна", "C", 4)));
+        transports.add(new Bus("Audi ", "A8 50 L TDI quattro", 3.0, Bus.Capacity.MEDIUM, new DriverTypeD("Трофимова София Данииловна", "D", 6)));
+
+        drivers.add(new DriverTypeB("Горелов Дмитрий Арсентьевич", "B", 10));
+        drivers.add(new DriverTypeC("Кузьмин Роман Георгиевич", "C", 7));
+        drivers.add(new DriverTypeD("Смирнова Екатерина Ивановна", "Д", 12));
+
+        mechanics.add(new Mechanic("Тимофеев Роман Аркадьевич", "Company1", "Легковые"));
+        mechanics.add(new Mechanic("Трофимов Дмитрий Иванович", "Company2", "Автобусы"));
+        mechanics.add(new Mechanic("Кузьмин Фёдор Леонидович", "Company3", "Грузовики"));
     }
 
     // Создание записей о 4 легковых автомобилях
