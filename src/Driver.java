@@ -17,8 +17,11 @@ public abstract class Driver {
         return name;
     }
 
-    public String getDriversLicenseType() {
-        return driversLicenseType;
+    public String getDriversLicenseType() throws MyExcep {
+        if (driversLicenseType.equals("неизвестен"))
+            throw new MyExcep("Необходимо указать тип прав!");
+        else
+            return driversLicenseType;
     }
 
     public int getExperience() {

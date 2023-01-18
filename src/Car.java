@@ -54,14 +54,10 @@ public class Car<T extends DriverTypeB> extends Transport implements Competing {
     public String passDiagnostics(){
         try
         {
-            if (getDriver().getDriversLicenseType() == "неизвестен")
-            {
-                throw new Exception("Необходимо указать тип прав!");
-            }
-            else
-                return "Пройдена диагностика";
+            getDriver().getDriversLicenseType();
+            return "Пройдена диагностика";
         }
-        catch (Exception ex)
+        catch (MyExcep ex)
         {
             return ex.getMessage();
         }
