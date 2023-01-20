@@ -1,13 +1,11 @@
-public class Mechanic {
+public class Mechanic<T extends Transport> {
 
     private String name;
     private String company;
-    private String car;
 
-    public Mechanic (String name, String company, String car) {
+    public Mechanic (String name, String company) {
         this.name = name;
         this.company = company;
-        this.car = car;
     }
 
     // Сеттеры
@@ -20,10 +18,6 @@ public class Mechanic {
         this.name = name;
     }
 
-    public void setCar(String car) {
-        this.car = car;
-    }
-
     // Геттеры
 
     public String getCompany() {
@@ -34,10 +28,6 @@ public class Mechanic {
         return name;
     }
 
-    public String getCar() {
-        return car;
-    }
-
     // Методы
 
     public void doMaintenance()
@@ -45,8 +35,8 @@ public class Mechanic {
         System.out.println("Проведено техобслуживание");
     }
 
-    public void fixCar()
+    public void fixCar(T car)
     {
-        System.out.println("Машина починена");
+        System.out.println("Машина " + car.getBrand() + " починена");
     }
 }

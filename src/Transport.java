@@ -1,9 +1,12 @@
+import java.util.ArrayList;
 import java.util.List;
 
 public abstract class Transport<T extends Driver> {
     private final String brand;
     private final String model;
     private double engineVolume;
+
+    public List<Mechanic<Transport>> mechanic = new ArrayList<Mechanic<Transport>>();
 
     private T driver;
 
@@ -24,7 +27,6 @@ public abstract class Transport<T extends Driver> {
         this.setEngineVolume(engineVolume);
 
         this.driver = driver;
-
     }
 
     // Геттеры
@@ -64,4 +66,15 @@ public abstract class Transport<T extends Driver> {
     public abstract String stopMoving();
 
     public abstract void printType();
+
+    public void getInfoCar()
+    {
+        System.out.println("Имя водителя: " + getDriver().getName());
+        System.out.println("Список механиков:");
+
+        for (Mechanic item : mechanic)
+        {
+            System.out.println(item.getName());
+        }
+    }
 }

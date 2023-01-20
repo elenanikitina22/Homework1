@@ -8,9 +8,8 @@ public class Main {
         Car car = new Car("Lada", "Granta", 1.7, Car.BodyType.SEDAN, new DriverTypeB("Горелов Дмитрий Арсентьевич", "B", 10));
         System.out.println(car.passDiagnostics());
 
-        ArrayList<Transport> transports = new ArrayList<Transport>();
-        ArrayList<Driver> drivers = new ArrayList<Driver>();
-        ArrayList<Mechanic> mechanics = new ArrayList<Mechanic>();
+        List<Transport> transports = new ArrayList<Transport>();
+        List<Driver> drivers = new ArrayList<Driver>();
 
         transports.add(new Car("Lada", "Granta", 1.7, Car.BodyType.SEDAN, new DriverTypeB("Горелов Дмитрий Арсентьевич", "B", 10)));
         transports.add(new Truck("Audi ", "A8 50 L TDI quattro", 3.0, Truck.LoadCapacity.N1, new DriverTypeC("Косарева Ангелина Савельевна", "C", 4)));
@@ -20,9 +19,10 @@ public class Main {
         drivers.add(new DriverTypeC("Кузьмин Роман Георгиевич", "C", 7));
         drivers.add(new DriverTypeD("Смирнова Екатерина Ивановна", "Д", 12));
 
-        mechanics.add(new Mechanic("Тимофеев Роман Аркадьевич", "Company1", "Легковые"));
-        mechanics.add(new Mechanic("Трофимов Дмитрий Иванович", "Company2", "Автобусы"));
-        mechanics.add(new Mechanic("Кузьмин Фёдор Леонидович", "Company3", "Грузовики"));
+        car.mechanic.add(new Mechanic<Car>("Имя-1", "Компания-1"));
+        car.mechanic.add(new Mechanic<Car>("Имя-2", "Компания-2"));
+
+        car.getInfoCar();
     }
 
     // Создание записей о 4 легковых автомобилях
