@@ -1,12 +1,12 @@
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public abstract class Transport<T extends Driver> {
     private final String brand;
     private final String model;
     private double engineVolume;
 
-    public List<Mechanic<Transport>> mechanic = new ArrayList<Mechanic<Transport>>();
+    //public List<Mechanic<?>> mechanic = new ArrayList<Mechanic<?>>();
+    public Map<Transport<?>, Mechanic<?>> Mechanic = new HashMap<Transport<?>, Mechanic<?>>();
 
     private T driver;
 
@@ -72,9 +72,15 @@ public abstract class Transport<T extends Driver> {
         System.out.println("Имя водителя: " + getDriver().getName());
         System.out.println("Список механиков:");
 
-        for (Mechanic item : mechanic)
+        Object obj = null;
+
+        for (Map.Entry<Transport<?>, Mechanic<?>> item : Mechanic.entrySet())
         {
-            System.out.println(item.getName());
+            if (item.getValue().equals(obj) == false)
+            {
+                System.out.println("Механик - " + item.getValue().getName());
+                obj = item.getValue();
+            }
         }
     }
 }

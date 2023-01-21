@@ -6,9 +6,11 @@ public class Main {
         task1();
 
         Car car = new Car("Lada", "Granta", 1.7, Car.BodyType.SEDAN, new DriverTypeB("Горелов Дмитрий Арсентьевич", "B", 10));
+        Car car_2 = new Car("Audi ", "A8 50 L TDI quattro", 3.0, Car.BodyType.HATCHBACK, new DriverTypeB("Калугина Маргарита Андреевна", "B", 5));
+        Car car_3 = new Car("Kia", "Sportage", 2.4, Car.BodyType.UNIVERSAL, new DriverTypeB("Смирнова Екатерина Ивановна", "B", 12));
         System.out.println(car.passDiagnostics());
 
-        List<Transport> transports = new ArrayList<Transport>();
+        List<Transport<?>> transports = new ArrayList<Transport<?>>();
         List<Driver> drivers = new ArrayList<Driver>();
 
         transports.add(new Car("Lada", "Granta", 1.7, Car.BodyType.SEDAN, new DriverTypeB("Горелов Дмитрий Арсентьевич", "B", 10)));
@@ -19,9 +21,12 @@ public class Main {
         drivers.add(new DriverTypeC("Кузьмин Роман Георгиевич", "C", 7));
         drivers.add(new DriverTypeD("Смирнова Екатерина Ивановна", "Д", 12));
 
-        car.mechanic.add(new Mechanic<Car>("Имя-1", "Компания-1"));
-        car.mechanic.add(new Mechanic<Car>("Имя-2", "Компания-2"));
+        Mechanic<Car> mechanic_1 = new Mechanic<Car>("Артемов Михаил", "Компания-1");
+        Mechanic<Car> mechanic_2 = new Mechanic<Car>("Романов Николай", "Компания-2");
 
+        car.Mechanic.put(car, mechanic_1);
+        car.Mechanic.put(car_2, mechanic_2);
+        car.Mechanic.put(car_3, mechanic_1);
         car.getInfoCar();
     }
 
