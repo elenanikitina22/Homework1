@@ -28,6 +28,15 @@ public class Main {
         car.Mechanic.put(car_2, mechanic_2);
         car.Mechanic.put(car_3, mechanic_1);
         car.getInfoCar();
+
+
+        Driver driverOne = new DriverTypeB("Горелов Дмитрий Арсентьевич", "B", 10);
+        Driver driverTwo = new DriverTypeC("Кузьмин Роман Георгиевич", "C", 7);
+
+        car.AddDriver(driverOne);
+        car.AddDriver(driverTwo);
+        car.AddDriver(driverOne);
+        car.getInfoDrivers();
     }
 
     // Создание записей о 4 легковых автомобилях

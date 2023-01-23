@@ -5,8 +5,8 @@ public abstract class Transport<T extends Driver> {
     private final String model;
     private double engineVolume;
 
-    //public List<Mechanic<?>> mechanic = new ArrayList<Mechanic<?>>();
     public Map<Transport<?>, Mechanic<?>> Mechanic = new HashMap<Transport<?>, Mechanic<?>>();
+    private HashSet<Driver> hashSetDrivers = new HashSet<Driver>();
 
     private T driver;
 
@@ -54,7 +54,12 @@ public abstract class Transport<T extends Driver> {
         } else {
             this.engineVolume = engineVolume;
         }
+    }
 
+    public void AddDriver(Driver driver)
+    {
+        if(hashSetDrivers.contains(driver) == false)
+            hashSetDrivers.add(driver);
     }
 
     // Прочие методы
@@ -82,5 +87,13 @@ public abstract class Transport<T extends Driver> {
                 obj = item.getValue();
             }
         }
+    }
+
+    public void getInfoDrivers()
+    {
+        System.out.println("Список водителей:");
+
+        for (var item : hashSetDrivers)
+            System.out.println(item.getName());
     }
 }
