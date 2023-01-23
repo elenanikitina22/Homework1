@@ -6,8 +6,8 @@ public class Main {
         task1();
 
         Car car = new Car("Lada", "Granta", 1.7, Car.BodyType.SEDAN, new DriverTypeB("Горелов Дмитрий Арсентьевич", "B", 10));
-        Car car_2 = new Car("Audi ", "A8 50 L TDI quattro", 3.0, Car.BodyType.HATCHBACK, new DriverTypeB("Калугина Маргарита Андреевна", "B", 5));
-        Car car_3 = new Car("Kia", "Sportage", 2.4, Car.BodyType.UNIVERSAL, new DriverTypeB("Смирнова Екатерина Ивановна", "B", 12));
+        Car carTwo = new Car("Audi ", "A8 50 L TDI quattro", 3.0, Car.BodyType.HATCHBACK, new DriverTypeB("Калугина Маргарита Андреевна", "B", 5));
+        Car carThree = new Car("Kia", "Sportage", 2.4, Car.BodyType.UNIVERSAL, new DriverTypeB("Смирнова Екатерина Ивановна", "B", 12));
         System.out.println(car.passDiagnostics());
 
         List<Transport<?>> transports = new ArrayList<Transport<?>>();
@@ -21,12 +21,12 @@ public class Main {
         drivers.add(new DriverTypeC("Кузьмин Роман Георгиевич", "C", 7));
         drivers.add(new DriverTypeD("Смирнова Екатерина Ивановна", "Д", 12));
 
-        Mechanic<Car> mechanic_1 = new Mechanic<Car>("Артемов Михаил", "Компания-1");
-        Mechanic<Car> mechanic_2 = new Mechanic<Car>("Романов Николай", "Компания-2");
+        Mechanic<Car> mechanicOne = new Mechanic<Car>("Артемов Михаил", "Компания-1");
+        Mechanic<Car> mechanicTwo = new Mechanic<Car>("Романов Николай", "Компания-2");
 
-        car.Mechanic.put(car, mechanic_1);
-        car.Mechanic.put(car_2, mechanic_2);
-        car.Mechanic.put(car_3, mechanic_1);
+        car.AddMechanic(car, mechanicOne);
+        car.AddMechanic(carTwo, mechanicTwo);
+        car.AddMechanic(carThree, mechanicOne);
         car.getInfoCar();
     }
 

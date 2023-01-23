@@ -5,8 +5,7 @@ public abstract class Transport<T extends Driver> {
     private final String model;
     private double engineVolume;
 
-    //public List<Mechanic<?>> mechanic = new ArrayList<Mechanic<?>>();
-    public Map<Transport<?>, Mechanic<?>> Mechanic = new HashMap<Transport<?>, Mechanic<?>>();
+    private Map<Transport<?>, Mechanic<?>> mechanic = new HashMap<Transport<?>, Mechanic<?>>();
 
     private T driver;
 
@@ -54,7 +53,11 @@ public abstract class Transport<T extends Driver> {
         } else {
             this.engineVolume = engineVolume;
         }
+    }
 
+    public void AddMechanic(Transport<?> car, Mechanic<?> mechanic)
+    {
+        this.mechanic.put(car, mechanic);
     }
 
     // Прочие методы
@@ -74,7 +77,7 @@ public abstract class Transport<T extends Driver> {
 
         Object obj = null;
 
-        for (Map.Entry<Transport<?>, Mechanic<?>> item : Mechanic.entrySet())
+        for (Map.Entry<Transport<?>, Mechanic<?>> item : mechanic.entrySet())
         {
             if (item.getValue().equals(obj) == false)
             {

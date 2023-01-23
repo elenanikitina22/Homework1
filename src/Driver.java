@@ -8,7 +8,6 @@ public abstract class Driver {
         this.setName(name);
         this.setDriversLicenseType(driversLicenseType);
         this.setExperience(experience);
-
     }
 
     // Геттеры
