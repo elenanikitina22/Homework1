@@ -6,7 +6,7 @@ public abstract class Transport<T extends Driver> {
     private double engineVolume;
 
     public Map<Transport<?>, Mechanic<?>> Mechanic = new HashMap<Transport<?>, Mechanic<?>>();
-    private HashSet<Driver> hashSetDrivers = new HashSet<Driver>();
+    private Set<Driver> hashSetDrivers = new HashSet<Driver>();
 
     private T driver;
 
@@ -56,10 +56,9 @@ public abstract class Transport<T extends Driver> {
         }
     }
 
-    public void AddDriver(Driver driver)
+    public void addDriver(Driver driver)
     {
-        if(hashSetDrivers.contains(driver) == false)
-            hashSetDrivers.add(driver);
+        hashSetDrivers.add(driver);
     }
 
     // Прочие методы
@@ -93,7 +92,11 @@ public abstract class Transport<T extends Driver> {
     {
         System.out.println("Список водителей:");
 
-        for (var item : hashSetDrivers)
-            System.out.println(item.getName());
+        Iterator<Driver> item = hashSetDrivers.iterator();
+
+        while (item.hasNext())
+        {
+            System.out.println(item.next().getName());
+        }
     }
 }

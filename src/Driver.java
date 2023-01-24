@@ -69,6 +69,21 @@ public abstract class Driver {
                 ", Стаж " + experience;
     }
 
+    @Override
+    public boolean equals(Object obj)
+    {
+        if (obj == null)
+            return false;
+
+        var driver = (Driver)obj;
+        if (this.getName().equals(driver.getName()))
+            return true;
+
+        return false;
+    }
+
+    @Override
+    public int hashCode() {
+        return getName().hashCode();
+    }
 }
-
-
