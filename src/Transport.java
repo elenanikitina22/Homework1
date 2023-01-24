@@ -55,7 +55,7 @@ public abstract class Transport<T extends Driver> {
         }
     }
 
-    public void AddMechanic(Transport<?> car, Mechanic<?> mechanic)
+    public void addMechanic(Transport<?> car, Mechanic<?> mechanic)
     {
         this.mechanic.put(car, mechanic);
     }
@@ -85,5 +85,24 @@ public abstract class Transport<T extends Driver> {
                 obj = item.getValue();
             }
         }
+    }
+
+    @Override
+    public boolean equals(Object obj)
+    {
+        if(obj == null)
+            return false;
+
+        var car = (Transport)obj;
+        if (this.getBrand().equals(car.getBrand()) && this.getModel().equals(car.getModel()))
+            return true;
+
+        return false;
+    }
+
+    @Override
+    public int hashCode()
+    {
+        return this.getBrand().hashCode() + this.getModel().hashCode();
     }
 }

@@ -7,7 +7,6 @@ public class Main {
 
         Car car = new Car("Lada", "Granta", 1.7, Car.BodyType.SEDAN, new DriverTypeB("Горелов Дмитрий Арсентьевич", "B", 10));
         Car carTwo = new Car("Audi ", "A8 50 L TDI quattro", 3.0, Car.BodyType.HATCHBACK, new DriverTypeB("Калугина Маргарита Андреевна", "B", 5));
-        Car carThree = new Car("Kia", "Sportage", 2.4, Car.BodyType.UNIVERSAL, new DriverTypeB("Смирнова Екатерина Ивановна", "B", 12));
         System.out.println(car.passDiagnostics());
 
         List<Transport<?>> transports = new ArrayList<Transport<?>>();
@@ -24,9 +23,8 @@ public class Main {
         Mechanic<Car> mechanicOne = new Mechanic<Car>("Артемов Михаил", "Компания-1");
         Mechanic<Car> mechanicTwo = new Mechanic<Car>("Романов Николай", "Компания-2");
 
-        car.AddMechanic(car, mechanicOne);
-        car.AddMechanic(carTwo, mechanicTwo);
-        car.AddMechanic(carThree, mechanicOne);
+        car.addMechanic(car, mechanicOne);
+        car.addMechanic(carTwo, mechanicTwo);
         car.getInfoCar();
     }
 
@@ -64,9 +62,6 @@ public class Main {
         for (int i = 0; i < cars.length; i++)
         {
             System.out.println("Водитель " + cars[i].getDriver().getName() + " управляет легковым автомобилем " + cars[i].getBrand() + " и будет участвовать в заезде.");
-
         }
-
     }
-
 }
