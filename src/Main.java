@@ -1,43 +1,149 @@
+import MyException.IncorrectArgumentException;
+import MyException.TaskNotFoundException;
+import Tasks.*;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
-import java.util.Arrays;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IncorrectArgumentException, TaskNotFoundException {
 
-        // Курсовой проект
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+        Scanner scanner = new Scanner(System.in);
 
-        // Часть 1
+        System.out.println(LocalDate.now().format(formatter));
 
+        TaskService taskService = new TaskService();
 
+        while (true) {
+            System.out.println("1) Для добавления задачи введите Add");
+            System.out.println("2) Для получения задачи на указанный день, введите Show");
+            System.out.println("3) Для удаления задачи введите Del");
 
+            String text = scanner.nextLine();
 
+            if (text.toUpperCase().equals("ADD")) {
+                System.out.println("Введите название задачи");
+                String title = scanner.nextLine();
 
+                System.out.println("Введите описание задачи");
+                String description = scanner.nextLine();
 
+                System.out.println("Укажите тип задачи: P - личная, W - рабочая");
+                String type = scanner.nextLine();
 
+                Type typeTask;
 
+                switch (type.toUpperCase()) {
+                    case "P":
+                        typeTask = Type.PERSONAL;
+                        break;
+                    case "W":
+                        typeTask = Type.WORK;
+                        break;
+                    default:
+                        typeTask = null;
+                        break;
+                }
 
-        // 2. Задача на функциональное программирование
+                System.out.println("Укажите повторяемость задачи: " +
+                        "S - однократная, D - ежедневная, W - еженедельная, M - ежемесячная, Y - ежегодная");
+                String repeatability = scanner.nextLine();
 
-        // Ввод текста пользователем
+                Task task;
 
-        // Scanner in = new Scanner(System.in);
-        // System.out.print("Введите текст: ");
-        // String text = in.nextLine();
-        // in.close();
+                try
+                {
+                    switch (repeatability.toUpperCase())
+                    {
+                        case "S":
+                            task = new OneTimeTask(title, description, typeTask);
+                            break;
+                        case "D":
+                            task = new DailyTask(title, description, typeTask);
+                            taskService.addTask(task);
+                            break;
+                        case "W":
+                            task = new WeeklyTask(title, description, typeTask);
+                            taskService.addTask(task);
+                            break;
+                        case "M":
+                            task = new MonthlyTask(title, description, typeTask);
+                            taskService.addTask(task);
+                            break;
+                        case "Y":
+                            task = new YearlyTask(title, description, typeTask);
+                            taskService.addTask(task);
+                            break;
+                        default:
+                            task = null;
+                            break;
+                    }
 
-        // Текст по умолчанию
+                    taskService.addTask(task);
+                    System.out.println("Задача добавлена в ежедневник. \n");
+                }
+                catch (TaskNotFoundException exTask)
+                {
+                    System.out.println(exTask.getMessage());
+                }
+                catch (IncorrectArgumentException exArg)
+                {
+                    System.out.println(exArg.getArgument());
+                }
+            }
+            else if (text.toUpperCase().equals("SHOW"))
+            {
+                System.out.println("Введите дату в формате число-месяц-год");
+                text = scanner.nextLine();
 
-        String text = "yourapp the quick brown fox jumps over the lazy dog";
+                LocalDate date = null;
 
-        String[] textToArray = text.split(" ");
-        Arrays.sort(textToArray);
+                try
+                {
+                    date = LocalDate.parse(text, formatter);
+                }
+                catch (Exception ex)
+                {
+                    System.out.println("Неправильный формат даты. \n");
+                    continue;
+                }
 
-        System.out.println("В тексте " + textToArray.length + " слов");
-        System.out.println("TOP10:");
+                var list = taskService.getAllByDate(date);
+                System.out.println("Список задач на " + date + ":");
 
+                if (list.size() > 0)
+                {
+                    for (var item : list)
+                        System.out.println(item.toString());
+                }
+                else
+                {
+                    System.out.println("Задачи не найдены. \n");
+                }
+            }
+            else if (text.toUpperCase().equals("DEL"))
+            {
+                System.out.println("Введите id задачи.");
+                text = scanner.nextLine();
+                int id;
 
-        System.out.println("Содержимое массива: " + Arrays.toString(textToArray));
+                try
+                {
+                    id = Integer.parseInt(text);
 
-
+                    Task task =  taskService.removeTask(id);
+                    System.out.println("Задача " + task.getTitle() + " удалена.");
+                }
+                catch (TaskNotFoundException exTask)
+                {
+                    System.out.println(exTask.getMessage() + "\n");
+                }
+                catch (Exception ex)
+                {
+                    System.out.println("Некорректный формат id \n");
+                }
+            }
+        }
     }
 }
