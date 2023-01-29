@@ -13,7 +13,9 @@ public class TaskService {
 
     public void addTask(Task task) throws TaskNotFoundException {
         if (task == null)
+        {
             throw new TaskNotFoundException("Ошибка при добавлении задачи. Некорректное значение!");
+        }
 
         taskMap.put(task.getId(), task);
     }
@@ -39,10 +41,9 @@ public class TaskService {
         List<Task> taskForDay = new ArrayList<Task>();
 
         for (var item : taskMap.values()) {
-            Task task = (Task)item;
 
-            if (task.appearsIn(date))
-                taskForDay.add(task);
+            if (item.appearsIn(date))
+                taskForDay.add(item);
         }
 
         return taskForDay;

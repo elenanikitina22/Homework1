@@ -2,16 +2,18 @@ import MyException.IncorrectArgumentException;
 import MyException.TaskNotFoundException;
 import Tasks.*;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
 public class Main {
-    public static void main(String[] args) throws IncorrectArgumentException, TaskNotFoundException {
+    public static void main(String[] args) {
 
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+        final String dateFormat = "dd-MM-yyyy";
+        final String dateTimeFormat = "dd-MM-yyyy HH-mm";
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(dateFormat);
         Scanner scanner = new Scanner(System.in);
-
-        System.out.println(LocalDate.now().format(formatter));
 
         TaskService taskService = new TaskService();
 
@@ -46,6 +48,21 @@ public class Main {
                         break;
                 }
 
+                System.out.println("Укажите дату и время выполнения задачи (в формате " + dateTimeFormat + "):");
+                String dateText = scanner.nextLine();
+                DateTimeFormatter formatterDateTime = DateTimeFormatter.ofPattern(dateTimeFormat);
+                LocalDateTime date;
+
+                try
+                {
+                    date = LocalDateTime.parse(dateText, formatterDateTime);
+                }
+                catch (Exception ex)
+                {
+                    System.out.println("Дата указана неверно!");
+                    continue;
+                }
+
                 System.out.println("Укажите повторяемость задачи: " +
                         "S - однократная, D - ежедневная, W - еженедельная, M - ежемесячная, Y - ежегодная");
                 String repeatability = scanner.nextLine();
@@ -57,23 +74,19 @@ public class Main {
                     switch (repeatability.toUpperCase())
                     {
                         case "S":
-                            task = new OneTimeTask(title, description, typeTask);
+                            task = new OneTimeTask(title, description, typeTask, date);
                             break;
                         case "D":
-                            task = new DailyTask(title, description, typeTask);
-                            taskService.addTask(task);
+                            task = new DailyTask(title, description, typeTask, date);
                             break;
                         case "W":
-                            task = new WeeklyTask(title, description, typeTask);
-                            taskService.addTask(task);
+                            task = new WeeklyTask(title, description, typeTask, date);
                             break;
                         case "M":
-                            task = new MonthlyTask(title, description, typeTask);
-                            taskService.addTask(task);
+                            task = new MonthlyTask(title, description, typeTask, date);
                             break;
                         case "Y":
-                            task = new YearlyTask(title, description, typeTask);
-                            taskService.addTask(task);
+                            task = new YearlyTask(title, description, typeTask, date);
                             break;
                         default:
                             task = null;

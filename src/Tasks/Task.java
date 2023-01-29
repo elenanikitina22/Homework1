@@ -12,16 +12,18 @@ public abstract class Task {
     private Type type;
     private LocalDateTime dateTime;
 
-    public Task(String title, String description, Type type) throws IncorrectArgumentException {
+    public Task(String title, String description, Type type, LocalDateTime dateTime) throws IncorrectArgumentException {
         this.title = title;
         this.description = description;
         this.type = type;
+        this.dateTime = dateTime;
 
         if (this.type == null)
+        {
             throw new IncorrectArgumentException("Некорректное значение типа задачи.");
+        }
 
         id = idGenerator();
-        dateTime = LocalDateTime.now();
     }
 
     // Геттеры
@@ -65,18 +67,25 @@ public abstract class Task {
     }
 
     // Сравнение дат
-    public abstract Boolean appearsIn(LocalDate date);
+    public abstract boolean appearsIn(LocalDate date);
 
     // Переопределение методов
     @Override
     public boolean equals(Object obj)
     {
         if (obj == null)
+        {
             return false;
+        }
 
-        Task task = (Task)obj;
-        if (getTitle().equals(task.getTitle()) && getType().equals(task.getType()))
-            return true;
+        if (obj instanceof Task)
+        {
+            Task task = (Task)obj;
+            if (getTitle().equals(task.getTitle()) && getType().equals(task.getType()))
+            {
+                return true;
+            }
+        }
 
         return false;
     }
@@ -91,6 +100,6 @@ public abstract class Task {
     {
         return "Id задачи: " + getId() + "\n" +
                 "Название задачи: " + getTitle() + ", описание: " + getDescription() + ", тип: " + getType().getTypeEnum() + "\n" +
-                "Дата добавления: " + getDateTime().toLocalDate() + "\n";
+                "Ближайщая дата выполнения: " + getDateTime().toLocalDate() + "\n";
     }
 }

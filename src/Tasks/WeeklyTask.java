@@ -1,17 +1,22 @@
 package Tasks;
 import MyException.IncorrectArgumentException;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 public class WeeklyTask extends Task {
 
-    public WeeklyTask(String title, String description, Type type) throws IncorrectArgumentException {
-        super(title, description, type);
+    public WeeklyTask(String title, String description, Type type, LocalDateTime dateTime) throws IncorrectArgumentException {
+        super(title, description, type, dateTime);
     }
 
     @Override
-    public Boolean appearsIn(LocalDate date) {
-        if (getDateTime().toLocalDate().plusWeeks(1).equals(date))
+    public boolean appearsIn(LocalDate date) {
+        if ((date.isAfter(getDateTime().toLocalDate()) ||
+             date.isEqual(getDateTime().toLocalDate())) &&
+             date.getDayOfWeek() == getDateTime().getDayOfWeek())
+        {
             return true;
+        }
 
         return false;
     }

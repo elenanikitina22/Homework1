@@ -1,16 +1,21 @@
 package Tasks;
 import MyException.IncorrectArgumentException;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 public class MonthlyTask extends Task {
-    public MonthlyTask(String title, String description, Type type) throws IncorrectArgumentException {
-        super(title, description, type);
+    public MonthlyTask(String title, String description, Type type, LocalDateTime dateTime) throws IncorrectArgumentException {
+        super(title, description, type, dateTime);
     }
 
     @Override
-    public Boolean appearsIn(LocalDate date) {
-        if (getDateTime().toLocalDate().plusMonths(1).equals(date))
+    public boolean appearsIn(LocalDate date) {
+        if ((date.isAfter(getDateTime().toLocalDate()) ||
+             date.isEqual(getDateTime().toLocalDate())) &&
+             date.getDayOfMonth() == getDateTime().getDayOfMonth())
+        {
             return true;
+        }
 
         return false;
     }

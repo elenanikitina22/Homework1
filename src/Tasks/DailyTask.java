@@ -1,15 +1,16 @@
 package Tasks;
 import MyException.IncorrectArgumentException;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 public class DailyTask extends Task {
-    public DailyTask(String title, String description, Type type) throws IncorrectArgumentException {
-        super(title, description, type);
+    public DailyTask(String title, String description, Type type, LocalDateTime dateTime) throws IncorrectArgumentException {
+        super(title, description, type, dateTime);
     }
 
     @Override
-    public Boolean appearsIn(LocalDate date) {
-        if(LocalDate.now().equals(date) || getDateTime().toLocalDate().plusDays(1).equals(date))
+    public boolean appearsIn(LocalDate date) {
+        if(date.isAfter(getDateTime().toLocalDate()) || date.isEqual(getDateTime().toLocalDate()))
             return true;
 
         return false;
