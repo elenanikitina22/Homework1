@@ -7,7 +7,7 @@ import java.util.Map;
 
 @Service
 public class IngredientServiceImpl implements IngredientService {
-    private Map<Integer, Ingredient> ingredients = new HashMap<Integer, Ingredient>();
+    private final Map<Integer, Ingredient> ingredients = new HashMap<Integer, Ingredient>();
     private int id = 0;
 
     public Ingredient addNewIngredient(Ingredient ingredient)

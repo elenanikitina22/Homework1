@@ -7,7 +7,7 @@ import java.util.Map;
 
 @Service
 public class RecipeServiceImpl implements RecipeService {
-    private Map<Integer, Recipe> recipes = new HashMap<Integer, Recipe>();
+    private final Map<Integer, Recipe> recipes = new HashMap<Integer, Recipe>();
     private int number = 0;
 
     public Recipe addNewRecipe(Recipe recipe)
