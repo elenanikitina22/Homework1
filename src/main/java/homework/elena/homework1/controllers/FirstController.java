@@ -14,7 +14,7 @@ public class FirstController {
 
     @GetMapping("/info")
     public String infoPage() {
-        return "Елена Никитина, проект Homework2, 01.02.203, Учебный проект";
+        return "Елена Никитинa, проект Homework2, 01.02.203, Учебный проект";
     }
 
 }
