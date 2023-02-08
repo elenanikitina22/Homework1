@@ -21,4 +21,23 @@ public class IngredientServiceImpl implements IngredientService {
     {
         return ingredients.get(id);
     }
+
+    @Override
+    public void editIngredient(int id, String name, int amount, String measureUnit) {
+        if(ingredients.containsKey(id))
+        {
+            Ingredient ingredient = ingredients.get(id);
+            ingredient.setName(name);
+            ingredient.setAmount(amount);
+            ingredient.setMeasureUnit(measureUnit);
+        }
+    }
+
+    @Override
+    public void deleteIngredient(int id) {
+        if(ingredients.containsKey(id))
+        {
+            ingredients.remove(id);
+        }
+    }
 }
