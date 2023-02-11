@@ -1,10 +1,9 @@
 package homework.elena.homework1.services.impl;
-import homework.elena.homework1.model.Ingredient;
 import homework.elena.homework1.model.Recipe;
 import homework.elena.homework1.services.RecipeService;
 import org.springframework.stereotype.Service;
+import java.util.Collection;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 @Service
@@ -25,22 +24,36 @@ public class RecipeServiceImpl implements RecipeService {
     }
 
     @Override
-    public void editRecipe(int number, String name, int cookingTime, List<Ingredient> ingredients, List<String> steps) {
+    public Recipe editRecipe(int number, Recipe recipe)
+    {
         if (recipes.containsKey(number))
         {
-            Recipe recipe = recipes.get(number);
-            recipe.setName(name);
-            recipe.setCookingTime(cookingTime);
-            recipe.setIngredients(ingredients);
-            recipe.setSteps(steps);
+            Recipe item = recipes.get(number);
+            item.setName(recipe.getName());
+            item.setCookingTime(recipe.getCookingTime());
+            item.setIngredients(recipe.getIngredients());
+            item.setSteps(recipe.getSteps());
+            return item;
         }
+
+        return null;
     }
 
     @Override
-    public void deleteRecipe(int number) {
+    public Recipe deleteRecipe(int number)
+    {
         if (recipes.containsKey(number))
         {
-            recipes.remove(number);
+            Recipe recipe = recipes.remove(number);
+            return recipe;
         }
+
+        return null;
+    }
+
+    @Override
+    public Collection<Recipe> getAllRecipes()
+    {
+        return recipes.values();
     }
 }

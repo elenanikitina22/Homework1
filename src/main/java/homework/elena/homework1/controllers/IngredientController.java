@@ -2,6 +2,7 @@ package homework.elena.homework1.controllers;
 import homework.elena.homework1.model.Ingredient;
 import homework.elena.homework1.services.IngredientService;
 import org.springframework.web.bind.annotation.*;
+import java.util.Collection;
 
 @RequestMapping("/ingredient")
 @RestController
@@ -13,27 +14,32 @@ public class IngredientController {
     }
 
     @PostMapping
-    public void addNewIngredient(@RequestBody Ingredient ingredient)
+    public Ingredient addNewIngredient(@RequestBody Ingredient ingredient)
     {
-        Ingredient addedIngredient = ingredientService.addNewIngredient(ingredient);
+        return ingredientService.addNewIngredient(ingredient);
     }
 
     @GetMapping("{id}")
     public Ingredient getIngredient(@PathVariable int id)
     {
-        Ingredient ingredient = ingredientService.getIngredient(id);
-
-        return ingredient;
+        return ingredientService.getIngredient(id);
     }
 
-    @PostMapping
-    public void editIngredient(@RequestBody int id, String name, int amount, String measureUnit)
+    @PutMapping
+    public Ingredient editIngredient(@RequestBody int id, Ingredient ingredient)
     {
-        ingredientService.editIngredient(id, name, amount, measureUnit);
+        return ingredientService.editIngredient(id, ingredient);
     }
 
-    public void deleteIngredient(@RequestBody int id)
+    @DeleteMapping("{id}")
+    public Ingredient deleteIngredient(@PathVariable int id)
     {
-        ingredientService.deleteIngredient(id);
+        return ingredientService.deleteIngredient(id);
+    }
+
+    @GetMapping()
+    public Collection<Ingredient> getAllRecipes()
+    {
+        return ingredientService.getAllIngredients();
     }
 }

@@ -1,10 +1,8 @@
 package homework.elena.homework1.controllers;
-import homework.elena.homework1.model.Ingredient;
 import homework.elena.homework1.model.Recipe;
 import homework.elena.homework1.services.RecipeService;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
+import java.util.Collection;
 
 @RequestMapping("/recipe")
 @RestController
@@ -16,28 +14,32 @@ public class RecipeController {
     }
 
     @PostMapping
-    public void addNewRecipe(@RequestBody Recipe recipe)
+    public Recipe addNewRecipe(@RequestBody Recipe recipe)
     {
-        Recipe addedRecipe = recipeService.addNewRecipe(recipe);
+        return recipeService.addNewRecipe(recipe);
     }
 
     @GetMapping("{number}")
     public Recipe getRecipe(@PathVariable int number)
     {
-        Recipe recipe = recipeService.getRecipe(number);
-
-        return recipe;
+        return recipeService.getRecipe(number);
     }
 
-    @PostMapping
-    public void editRecipe(@RequestBody int number, String name, int cookingTime, List<Ingredient> ingredients, List<String> steps)
+    @PutMapping()
+    public Recipe editRecipe(@RequestBody int number, Recipe recipe)
     {
-        recipeService.editRecipe(number, name, cookingTime, ingredients, steps);
+        return recipeService.editRecipe(number, recipe);
     }
 
-    @PostMapping
-    public void deleteRecipe(@RequestBody int number)
+    @DeleteMapping("{number}")
+    public Recipe deleteRecipe(@PathVariable int number)
     {
-        recipeService.deleteRecipe(number);
+        return recipeService.deleteRecipe(number);
+    }
+
+    @GetMapping()
+    public Collection<Recipe> getAllRecipes()
+    {
+        return recipeService.getAllRecipes();
     }
 }

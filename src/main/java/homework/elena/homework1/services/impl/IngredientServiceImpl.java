@@ -2,6 +2,7 @@ package homework.elena.homework1.services.impl;
 import homework.elena.homework1.model.Ingredient;
 import homework.elena.homework1.services.IngredientService;
 import org.springframework.stereotype.Service;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -23,21 +24,35 @@ public class IngredientServiceImpl implements IngredientService {
     }
 
     @Override
-    public void editIngredient(int id, String name, int amount, String measureUnit) {
+    public Ingredient editIngredient(int id, Ingredient ingredient)
+    {
         if(ingredients.containsKey(id))
         {
-            Ingredient ingredient = ingredients.get(id);
-            ingredient.setName(name);
-            ingredient.setAmount(amount);
-            ingredient.setMeasureUnit(measureUnit);
+            Ingredient item = ingredients.get(id);
+            item.setName(ingredient.getName());
+            item.setAmount(ingredient.getAmount());
+            item.setMeasureUnit(ingredient.getMeasureUnit());
+            return item;
         }
+
+        return null;
     }
 
     @Override
-    public void deleteIngredient(int id) {
+    public Ingredient deleteIngredient(int id)
+    {
         if(ingredients.containsKey(id))
         {
-            ingredients.remove(id);
+            Ingredient ingredient = ingredients.remove(id);
+            return ingredient;
         }
+
+        return null;
+    }
+
+    @Override
+    public Collection<Ingredient> getAllIngredients()
+    {
+        return ingredients.values();
     }
 }
