@@ -25,8 +25,8 @@ public class RecipeController {
         return recipeService.getRecipe(number);
     }
 
-    @PutMapping()
-    public Recipe editRecipe(@RequestBody int number, Recipe recipe)
+    @PutMapping("{number}")
+    public Recipe editRecipe(@PathVariable int number, @RequestBody Recipe recipe)
     {
         return recipeService.editRecipe(number, recipe);
     }

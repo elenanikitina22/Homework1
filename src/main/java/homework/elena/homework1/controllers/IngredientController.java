@@ -25,8 +25,8 @@ public class IngredientController {
         return ingredientService.getIngredient(id);
     }
 
-    @PutMapping
-    public Ingredient editIngredient(@RequestBody int id, Ingredient ingredient)
+    @PutMapping("{id}")
+    public Ingredient editIngredient(@PathVariable int id, @RequestBody Ingredient ingredient)
     {
         return ingredientService.editIngredient(id, ingredient);
     }
