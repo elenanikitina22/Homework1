@@ -8,4 +8,5 @@ public interface RecipeService {
     public Recipe editRecipe(int number, Recipe recipe);
     public Recipe deleteRecipe(int number);
     public Collection<Recipe> getAllRecipes();
+    public void saveRecipes();
 }

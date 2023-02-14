@@ -1,5 +1,6 @@
 package homework.elena.homework1.controllers;
 import homework.elena.homework1.model.Ingredient;
+import homework.elena.homework1.services.FilesService;
 import homework.elena.homework1.services.IngredientService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -12,7 +13,7 @@ import java.util.Collection;
 public class IngredientController {
     private final IngredientService ingredientService;
 
-    public IngredientController(IngredientService ingredientService) {
+    public IngredientController(IngredientService ingredientService, FilesService filesService) {
         this.ingredientService = ingredientService;
     }
 
@@ -20,7 +21,9 @@ public class IngredientController {
     @Operation(summary = "Добавление ингридиента")
     public Ingredient addNewIngredient(@RequestBody Ingredient ingredient)
     {
-        return ingredientService.addNewIngredient(ingredient);
+        Ingredient obj = ingredientService.addNewIngredient(ingredient);
+        ingredientService.saveIngridients();
+        return obj;
     }
 
     @GetMapping("{id}")
@@ -34,14 +37,18 @@ public class IngredientController {
     @Operation(summary = "Изменение ингридиента по id")
     public Ingredient editIngredient(@PathVariable int id, @RequestBody Ingredient ingredient)
     {
-        return ingredientService.editIngredient(id, ingredient);
+        Ingredient obj = ingredientService.editIngredient(id, ingredient);
+        ingredientService.saveIngridients();
+        return obj;
     }
 
     @DeleteMapping("{id}")
     @Operation(summary = "Удаление ингридиента по id")
     public Ingredient deleteIngredient(@PathVariable int id)
     {
-        return ingredientService.deleteIngredient(id);
+        Ingredient obj = ingredientService.deleteIngredient(id);
+        ingredientService.saveIngridients();
+        return obj;
     }
 
     @GetMapping()

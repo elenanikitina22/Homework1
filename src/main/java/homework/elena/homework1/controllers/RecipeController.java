@@ -20,7 +20,9 @@ public class RecipeController {
     @Operation(summary = "Добавление рецепта")
     public Recipe addNewRecipe(@RequestBody Recipe recipe)
     {
-        return recipeService.addNewRecipe(recipe);
+        Recipe obj = recipeService.addNewRecipe(recipe);
+        recipeService.saveRecipes();
+        return obj;
     }
 
     @GetMapping("{number}")
@@ -34,14 +36,18 @@ public class RecipeController {
     @Operation(summary = "Изменение рецепта по id")
     public Recipe editRecipe(@PathVariable int number, @RequestBody Recipe recipe)
     {
-        return recipeService.editRecipe(number, recipe);
+        Recipe obj = recipeService.editRecipe(number, recipe);
+        recipeService.saveRecipes();
+        return obj;
     }
 
     @DeleteMapping("{number}")
     @Operation(summary = "Удаление рецепта по id")
     public Recipe deleteRecipe(@PathVariable int number)
     {
-        return recipeService.deleteRecipe(number);
+        Recipe obj = recipeService.deleteRecipe(number);
+        recipeService.saveRecipes();
+        return obj;
     }
 
     @GetMapping()

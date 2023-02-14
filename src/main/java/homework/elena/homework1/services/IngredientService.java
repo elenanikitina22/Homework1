@@ -8,4 +8,5 @@ public interface IngredientService {
     public Ingredient editIngredient(int id, Ingredient ingredient);
     public Ingredient deleteIngredient(int id);
     public Collection<Ingredient> getAllIngredients();
+    public void saveIngridients();
 }

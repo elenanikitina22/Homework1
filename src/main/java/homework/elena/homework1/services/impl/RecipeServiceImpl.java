@@ -1,6 +1,12 @@
 package homework.elena.homework1.services.impl;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import homework.elena.homework1.model.Ingredient;
 import homework.elena.homework1.model.Recipe;
+import homework.elena.homework1.services.FilesService;
 import homework.elena.homework1.services.RecipeService;
+import jakarta.annotation.PostConstruct;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 import java.util.Collection;
@@ -9,8 +15,24 @@ import java.util.Map;
 
 @Service
 public class RecipeServiceImpl implements RecipeService {
-    private final Map<Integer, Recipe> recipes = new HashMap<Integer, Recipe>();
+    private Map<Integer, Recipe> recipes = new HashMap<Integer, Recipe>();
     private int number = 0;
+
+    private FilesService filesService;
+
+    public RecipeServiceImpl(FilesService filesService) {
+        this.filesService = filesService;
+    }
+
+    @PostConstruct
+    private void init() {
+        try {
+            String json = filesService.readFromFile("ingredients.json");
+            recipes = new ObjectMapper().readValue(json, new TypeReference<HashMap<Integer, Recipe>>() {});
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
     public Recipe addNewRecipe(Recipe recipe)
     {
@@ -56,5 +78,10 @@ public class RecipeServiceImpl implements RecipeService {
     public Collection<Recipe> getAllRecipes()
     {
         return recipes.values();
+    }
+
+    @Override
+    public void saveRecipes() {
+        filesService.saveToJsonFile(recipes, "recipes");
     }
 }
