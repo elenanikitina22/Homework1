@@ -1,6 +1,7 @@
 package homework.elena.homework1.services.impl;
 import homework.elena.homework1.model.Ingredient;
 import homework.elena.homework1.services.IngredientService;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 import java.util.Collection;
 import java.util.HashMap;
@@ -29,9 +30,9 @@ public class IngredientServiceImpl implements IngredientService {
         if(ingredients.containsKey(id))
         {
             Ingredient item = ingredients.get(id);
-            item.setName(ingredient.getName());
+            item.setName(StringUtils.trim(ingredient.getName()));
             item.setAmount(ingredient.getAmount());
-            item.setMeasureUnit(ingredient.getMeasureUnit());
+            item.setMeasureUnit(StringUtils.trim(ingredient.getMeasureUnit()));
             return item;
         }
 

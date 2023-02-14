@@ -1,11 +1,14 @@
 package homework.elena.homework1.controllers;
 import homework.elena.homework1.model.Recipe;
 import homework.elena.homework1.services.RecipeService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.web.bind.annotation.*;
 import java.util.Collection;
 
 @RequestMapping("/recipe")
 @RestController
+@Tag(name = "Работа с рецептами", description = "Операции для управления рецептами")
 public class RecipeController {
     private final RecipeService recipeService;
 
@@ -14,30 +17,35 @@ public class RecipeController {
     }
 
     @PostMapping
+    @Operation(summary = "Добавление рецепта")
     public Recipe addNewRecipe(@RequestBody Recipe recipe)
     {
         return recipeService.addNewRecipe(recipe);
     }
 
     @GetMapping("{number}")
+    @Operation(summary = "Получение рецепта по id")
     public Recipe getRecipe(@PathVariable int number)
     {
         return recipeService.getRecipe(number);
     }
 
     @PutMapping("{number}")
+    @Operation(summary = "Изменение рецепта по id")
     public Recipe editRecipe(@PathVariable int number, @RequestBody Recipe recipe)
     {
         return recipeService.editRecipe(number, recipe);
     }
 
     @DeleteMapping("{number}")
+    @Operation(summary = "Удаление рецепта по id")
     public Recipe deleteRecipe(@PathVariable int number)
     {
         return recipeService.deleteRecipe(number);
     }
 
     @GetMapping()
+    @Operation(summary = "Получение всех рецептов")
     public Collection<Recipe> getAllRecipes()
     {
         return recipeService.getAllRecipes();

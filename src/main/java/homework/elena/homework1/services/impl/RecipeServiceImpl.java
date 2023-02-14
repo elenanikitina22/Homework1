@@ -1,6 +1,7 @@
 package homework.elena.homework1.services.impl;
 import homework.elena.homework1.model.Recipe;
 import homework.elena.homework1.services.RecipeService;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 import java.util.Collection;
 import java.util.HashMap;
@@ -29,7 +30,7 @@ public class RecipeServiceImpl implements RecipeService {
         if (recipes.containsKey(number))
         {
             Recipe item = recipes.get(number);
-            item.setName(recipe.getName());
+            item.setName(StringUtils.trim(recipe.getName()));
             item.setCookingTime(recipe.getCookingTime());
             item.setIngredients(recipe.getIngredients());
             item.setSteps(recipe.getSteps());
