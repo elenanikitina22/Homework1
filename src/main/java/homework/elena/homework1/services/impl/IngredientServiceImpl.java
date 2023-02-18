@@ -17,7 +17,7 @@ public class IngredientServiceImpl implements IngredientService {
     private Map<Integer, Ingredient> ingredients = new HashMap<Integer, Ingredient>();
     private int id = 0;
 
-    private FilesService filesService;
+    private final FilesService filesService;
 
     public IngredientServiceImpl(FilesService filesService) {
         this.filesService = filesService;
@@ -29,7 +29,7 @@ public class IngredientServiceImpl implements IngredientService {
             String json = filesService.readFromFile("ingredients.json");
             ingredients = new ObjectMapper().readValue(json, new TypeReference<HashMap<Integer, Ingredient>>() {});
         } catch (JsonProcessingException e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
         }
     }
 

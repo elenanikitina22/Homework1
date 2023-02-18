@@ -18,7 +18,11 @@ public class RecipeServiceImpl implements RecipeService {
     private Map<Integer, Recipe> recipes = new HashMap<Integer, Recipe>();
     private int number = 0;
 
-    private FilesService filesService;
+    private final FilesService filesService;
+
+    public Map<Integer, Recipe> getRecipes() {
+        return recipes;
+    }
 
     public RecipeServiceImpl(FilesService filesService) {
         this.filesService = filesService;
@@ -27,10 +31,10 @@ public class RecipeServiceImpl implements RecipeService {
     @PostConstruct
     private void init() {
         try {
-            String json = filesService.readFromFile("ingredients.json");
+            String json = filesService.readFromFile("recepies.json");
             recipes = new ObjectMapper().readValue(json, new TypeReference<HashMap<Integer, Recipe>>() {});
         } catch (JsonProcessingException e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
         }
     }
 
@@ -82,6 +86,6 @@ public class RecipeServiceImpl implements RecipeService {
 
     @Override
     public void saveRecipes() {
-        filesService.saveToJsonFile(recipes, "recipes");
+        filesService.saveToJsonFile(recipes, "recepies");
     }
 }

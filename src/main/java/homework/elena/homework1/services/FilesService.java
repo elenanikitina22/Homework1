@@ -3,9 +3,11 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
-import java.io.IOException;
+import org.springframework.web.multipart.MultipartFile;
+import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import static java.nio.file.StandardOpenOption.CREATE_NEW;
 
 @Service
 public class FilesService {
@@ -33,6 +35,21 @@ public class FilesService {
             return Files.readString(Path.of(filesDir, fileName));
         } catch (IOException e) {
             throw new RuntimeException(e);
+        }
+    }
+
+    public void uploadFile(MultipartFile file) throws IOException {
+        Path filePath = Path.of(filesDir,file.getOriginalFilename());
+        Files.createDirectories(filePath.getParent());
+        Files.deleteIfExists(filePath);
+
+        try (
+                InputStream is = file.getInputStream();
+                OutputStream os = Files.newOutputStream(filePath, CREATE_NEW);
+                BufferedInputStream bis = new BufferedInputStream(is, 1024);
+                BufferedOutputStream bos = new BufferedOutputStream(os, 1024);
+        ) {
+            bis.transferTo(bos);
         }
     }
 }
