@@ -4,6 +4,8 @@ import homework.elena.homework1.services.FilesService;
 import homework.elena.homework1.services.IngredientService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.Collection;
 
@@ -28,9 +30,17 @@ public class IngredientController {
 
     @GetMapping("{id}")
     @Operation(summary = "Получение ингридиента по id")
-    public Ingredient getIngredient(@PathVariable int id)
+    public ResponseEntity<Ingredient> getIngredient(@PathVariable int id)
     {
-        return ingredientService.getIngredient(id);
+        try
+        {
+            Ingredient ingredient = ingredientService.getIngredient(id);
+            return new ResponseEntity<Ingredient>(ingredient, HttpStatus.OK);
+        }
+        catch (Exception e)
+        {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
     }
 
     @PutMapping("{id}")

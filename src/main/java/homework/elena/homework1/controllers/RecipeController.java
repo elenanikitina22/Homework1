@@ -3,6 +3,8 @@ import homework.elena.homework1.model.Recipe;
 import homework.elena.homework1.services.RecipeService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.Collection;
 
@@ -16,7 +18,7 @@ public class RecipeController {
         this.recipeService = recipeService;
     }
 
-    @PostMapping
+    @PostMapping("/recipe")
     @Operation(summary = "Добавление рецепта")
     public Recipe addNewRecipe(@RequestBody Recipe recipe)
     {
@@ -27,9 +29,17 @@ public class RecipeController {
 
     @GetMapping("{number}")
     @Operation(summary = "Получение рецепта по id")
-    public Recipe getRecipe(@PathVariable int number)
+    public ResponseEntity<Recipe> getRecipe(@PathVariable int number)
     {
-        return recipeService.getRecipe(number);
+        try
+        {
+            Recipe recipe = recipeService.getRecipe(number);
+            return new ResponseEntity<Recipe>(recipe, HttpStatus.OK);
+        }
+        catch (Exception e)
+        {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
     }
 
     @PutMapping("{number}")
