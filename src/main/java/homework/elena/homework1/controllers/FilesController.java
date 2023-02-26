@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import java.io.*;
+import java.nio.file.Files;
 
 @RestController
 @Tag(name = "Работа с файлами рецептов")
@@ -38,31 +39,14 @@ public class FilesController {
 
     @GetMapping(value = "/files/recipe")
     public ResponseEntity<InputStreamResource> downloadFile() throws IOException {
-        File file = new File(filesDir + "recipe");
+        File file = new File(filesDir + "/" + "recipe");
 
         if (file.exists()) {
             InputStreamResource resource = new InputStreamResource(new FileInputStream(file));
-
             return ResponseEntity.ok()
-                    .contentType(MediaType.APPLICATION_OCTET_STREAM)
+                    .contentType(MediaType.TEXT_PLAIN)
                     .contentLength(file.length())
-                    .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=" + "recipe")
-                    .body(resource);
-        } else {
-            return ResponseEntity.notFound().build();
-        }
-    }
-
-    @GetMapping(value = "{name}")
-    public ResponseEntity<Object> downloadFile(@PathVariable String name, HttpServletResponse response) throws IOException {
-        File file = new File(filesDir + "/" + name);
-
-        if (file.exists()) {
-            InputStreamResource resource = new InputStreamResource(new FileInputStream(path.));
-            return ResponseEntity.ok()
-                    .contentType(MediaType.APPLICATION_OCTET_STREAM)
-                    .contentLength(file.length())
-                    .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=" + name)
+                    .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=" + "recipe.txt")
                     .body(resource);
         } else {
             return ResponseEntity.notFound().build();
