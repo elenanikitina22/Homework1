@@ -1,4 +1,6 @@
 package warehouse.elena.warehouse.controllers;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import warehouse.elena.warehouse.model.Socks;
 import warehouse.elena.warehouse.model.SocksColor;
 import warehouse.elena.warehouse.model.SocksSize;
@@ -35,16 +37,16 @@ public class SocksController {
 
     @GetMapping()
     @Operation(summary = "Получение общего количества носков")
-    public int geTotalNumberOfSocks(@RequestBody SocksColor color, @RequestBody SocksSize size, @RequestBody int cottonMin, @RequestBody int cottonMax)
+    public ResponseEntity<Integer> geTotalNumberOfSocks(@RequestBody SocksColor color, @RequestBody SocksSize size, @RequestBody int cottonMin, @RequestBody int cottonMax)
     {
         try
         {
             int total = socksServices.geTotalNumberOfSocks(color, size, cottonMin, cottonMax);
-            return total;
+            return new ResponseEntity<Integer>(total, HttpStatus.OK);
         }
         catch (IllegalArgumentException e)
         {
-            return 0;
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
 

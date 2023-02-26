@@ -10,7 +10,6 @@ import java.util.List;
 @Service
 public class SocksServicesImpl implements SocksServices {
     private List<Socks> socksList = new ArrayList<Socks>();
-    private int id = 0;
 
     @Override
     public Socks addSocks(Socks socks)
