@@ -2,6 +2,7 @@ package homework.elena.homework1.controllers;
 import homework.elena.homework1.services.FilesService;
 import homework.elena.homework1.services.RecipeService;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.http.HttpHeaders;
@@ -52,17 +53,16 @@ public class FilesController {
         }
     }
 
-    @GetMapping(value = "/files/recipes")
-    public ResponseEntity<InputStreamResource> downloadAllRecipes() throws IOException {
-        File file = new File(filesDir + "recipe");
+    @GetMapping(value = "{name}")
+    public ResponseEntity<Object> downloadFile(@PathVariable String name, HttpServletResponse response) throws IOException {
+        File file = new File(filesDir + "/" + name);
 
         if (file.exists()) {
-            InputStreamResource resource = new InputStreamResource(new FileInputStream(file));
-
+            InputStreamResource resource = new InputStreamResource(new FileInputStream(path.));
             return ResponseEntity.ok()
-                    .contentType(MediaType.APPLICATION_PDF)
+                    .contentType(MediaType.APPLICATION_OCTET_STREAM)
                     .contentLength(file.length())
-                    .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=" + "recipe")
+                    .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=" + name)
                     .body(resource);
         } else {
             return ResponseEntity.notFound().build();
