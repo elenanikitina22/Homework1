@@ -2,12 +2,19 @@ package homework.elena.homework1.services.impl;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import homework.elena.homework1.model.Ingredient;
 import homework.elena.homework1.model.Recipe;
 import homework.elena.homework1.services.FilesService;
 import homework.elena.homework1.services.RecipeService;
 import jakarta.annotation.PostConstruct;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import java.io.IOException;
+import java.io.Writer;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.StandardOpenOption;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
@@ -16,6 +23,9 @@ import java.util.Map;
 public class RecipeServiceImpl implements RecipeService {
     private Map<Integer, Recipe> recipes = new HashMap<Integer, Recipe>();
     private int number = 0;
+
+    @Value("${path.to.files.folder}")
+    private String filesDir;
 
     private final FilesService filesService;
 
@@ -86,5 +96,30 @@ public class RecipeServiceImpl implements RecipeService {
     @Override
     public void saveRecipes() {
         filesService.saveToJsonFile(recipes, "recepies");
+    }
+
+    public void listRecipe() throws IOException {
+        Path path = Path.of(filesDir, "recipe" + ".txt");
+        for(Recipe recipe : recipes.values())
+        {
+            try (Writer writer = Files.newBufferedWriter(path, StandardOpenOption.APPEND))
+            {
+                writer.append(recipe.getName() + "\n");
+                writer.append("Время приготовления: " + recipe.getCookingTime() + "\n");
+                writer.append("Ингридиенты: " + "\n");
+                for (Ingredient ingredient : recipe.getIngredients())
+                {
+                    writer.append(ingredient.getName() + "\n");
+                }
+                writer.append("Инструкция: " + "\n");
+
+                int i = 0;
+                for (String step : recipe.getSteps())
+                {
+                    i++;
+                    writer.append(i + " " + step + "\n");
+                }
+            }
+        }
     }
 }

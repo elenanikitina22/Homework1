@@ -52,16 +52,4 @@ public class FilesService {
             bis.transferTo(bos);
         }
     }
-
-    public boolean saveToFile(String text)
-    {
-        Path path = Path.of(filesDir, "recipe" + ".txt");
-
-        try {
-            Files.writeString(path, text);
-            return true;
-        } catch (IOException e) {
-            return false;
-        }
-    }
 }

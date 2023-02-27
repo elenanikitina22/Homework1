@@ -1,5 +1,6 @@
 package homework.elena.homework1.services;
 import homework.elena.homework1.model.Recipe;
+import java.io.IOException;
 import java.util.Collection;
 import java.util.Map;
 
@@ -11,4 +12,5 @@ public interface RecipeService {
     public Recipe deleteRecipe(int number);
     public Collection<Recipe> getAllRecipes();
     public void saveRecipes();
+    public void listRecipe() throws IOException;
 }
