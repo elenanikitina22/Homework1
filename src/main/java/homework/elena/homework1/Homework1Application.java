@@ -1,6 +1,4 @@
 package homework.elena.homework1;
-
-import homework.elena.homework1.services.IngredientService;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
