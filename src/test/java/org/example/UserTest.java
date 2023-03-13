@@ -8,30 +8,26 @@ class UserTest {
     public void shouldCreateUserWithoutParams()
     {
         User user = new User();
-        Assertions.assertTrue(user.getLogin() == "Логин");
-        Assertions.assertTrue(user.getEmail() == "email@test.ru");
+        Assertions.assertTrue(user.getLogin().equals("Логин"));
+        Assertions.assertTrue(user.getEmail().equals("email@test.ru"));
     }
 
     @Test
-    public void shouldCreateUserWithParams()
-    {
+    public void shouldCreateUserWithParams() throws Exception {
         User user = new User("Иван", "ivan@test.ru");
-        Assertions.assertTrue(user.getLogin() == "Иван");
-        Assertions.assertTrue(user.getEmail() == "ivan@test.ru");
+        Assertions.assertTrue(user.getLogin().equals("Иван"));
+        Assertions.assertTrue(user.getEmail().equals("ivan@test.ru"));
     }
 
     @Test
-    public void shouldCheckCorrectEmail()
-    {
-        User user = new User("Иван", "ivan@test.ru");
-        Assertions.assertTrue(user.getEmail().contains("@"));
-        Assertions.assertTrue(user.getEmail().contains("."));
+    public void shouldCheckCorrectEmail() {
+        Assertions.assertDoesNotThrow(() -> new User("Иван", "ivan@test.ru"));
+        Assertions.assertDoesNotThrow(() -> new User("Иван", "ivantestru"));
     }
 
     @Test
-    public void shouldCheckEmailAndLogin()
-    {
-        User user = new User("Иван", "ivan@test.ru");
-        Assertions.assertEquals(user.getEmail(), user.getLogin());
+    public void shouldCheckEmailAndLogin() {
+        Assertions.assertDoesNotThrow(() -> new User("Иван", "ivan@test.ru"));
+        Assertions.assertDoesNotThrow(() -> new User("Ivan", "Ivan"));
     }
 }

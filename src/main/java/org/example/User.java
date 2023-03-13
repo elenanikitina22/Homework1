@@ -10,10 +10,20 @@ public class User {
         email = "email@test.ru";
     }
 
-    public User(String login, String email)
-    {
-        this.login = login;
-        this.email = email;
+    public User(String login, String email) throws Exception {
+        if (email.contains("@") || email.contains("."))
+        {
+            this.login = login;
+            this.email = email;
+        }
+        else if (login.equals(email))
+        {
+            throw new Exception("Логин и email совпадают!");
+        }
+        else
+        {
+            throw new Exception("Некорректное значение email!");
+        }
     }
 
     public String getLogin() {
