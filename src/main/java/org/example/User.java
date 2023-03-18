@@ -11,18 +11,15 @@ public class User {
     }
 
     public User(String login, String email) throws Exception {
-        if (email.contains("@") || email.contains("."))
+        if (email.contains("@") && email.contains("."))
         {
             this.login = login;
             this.email = email;
         }
-        else if (login.equals(email))
+
+        if (login.equals(email))
         {
             throw new Exception("Логин и email совпадают!");
-        }
-        else
-        {
-            throw new Exception("Некорректное значение email!");
         }
     }
 

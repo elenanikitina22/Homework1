@@ -21,13 +21,13 @@ class UserTest {
 
     @Test
     public void shouldCheckCorrectEmail() {
-        Assertions.assertDoesNotThrow(() -> new User("Иван", "ivan@test.ru"));
-        Assertions.assertDoesNotThrow(() -> new User("Иван", "ivantestru"));
+        Assertions.assertThrows(Exception.class, () -> new User("Иван", "ivan@test.ru"));
+        Assertions.assertThrows(Exception.class, () -> new User("Иван", "ivantestru"));
     }
 
     @Test
     public void shouldCheckEmailAndLogin() {
-        Assertions.assertDoesNotThrow(() -> new User("Иван", "ivan@test.ru"));
-        Assertions.assertDoesNotThrow(() -> new User("Ivan", "Ivan"));
+        Assertions.assertThrows(Exception.class, () -> new User("Иван", "ivan@test.ru"));
+        Assertions.assertThrows(Exception.class, () -> new User("Ivan", "Ivan"));
     }
 }
