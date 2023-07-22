@@ -1,64 +1,35 @@
+import com.gridnine.testing.Flight;
+import com.gridnine.testing.FlightBuilder;
+
+import java.util.List;
+
 public class Main {
     public static void main(String[] args) {
 
+        List<Flight> flights = FlightBuilder.createFlights();
+        for (var flight : flights) {
+            System.out.println(flight);
+        }
 
+        System.out.println("Вылет до текущего момента");
 
-        System.out.println("Hello world!");
+        var firstColl = CollectionFilter.filterPastFlights(flights);
+        for (var flight : firstColl) {
+            System.out.println(flight);
+        }
 
+        System.out.println("Дата прилета раньше даты вылета");
 
+        var secondColl = CollectionFilter.filterByDepartureDateAndArrivalDate(flights);
+        for (var flight : secondColl) {
+            System.out.println(flight);
+        }
 
+        System.out.println("Более 2-х часов между перелетами");
 
-        // Задание 1
-
-
-
-
-        // Задание 2
-
-
-
-
-        // Задание 3
-
-
-
-
-        // Задание 4
-
-
-
-
-        // Задание 5
-
-
-
-
-        // Задание 6
-
-
-
-
-        // Задание 7
-
-
-
-
-        // Задание 8
-
-
-
-
-        // Задание 9
-
-
-
-
-        // Задание 10
-
-
-
-
-
-
+        var thirdColl = CollectionFilter.filteringByFlightTime(flights);
+        for (var flight : thirdColl) {
+            System.out.println(flight);
+        }
     }
 }
